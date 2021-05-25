@@ -1,7 +1,39 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Refresh" content="0;url=/ko/">
-  </head>
-  <body>
-  </body>
+<head>
+  <title>Pope's Dev Docs</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="alternate" href="https://docs.popekim.com/" hreflang="x-default" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-light">
+  <div class="jumbotron text-center">
+    <h1 lang="en">Select Your Langauge</h1>
+    <h1 lang="ko">언어를 선택하세요</h1>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <a href="/en"><img class="w-100 h-100" src="en.svg" title="English" alt="English"/></a>
+	</div>
+    <div class="col-md-6 col-sm-12">
+      <a href="/ko"><img class="w-100 h-100" src="ko.svg" title="한국어" alt="한국어"/></a>
+	</div>
+  </div>
+</div>
+<script> 
+  var language = window.navigator.userLanguage || window.navigator.language;
+  if (language.startsWith('ko')) {
+    window.location = "https://docs.popekim.com/ko/"; 
+  }
+  else if (language.startsWith('en')) {
+    window.location = "https://docs.popekim.com/en/"; 
+  }
+</script> 
+</body>
 </html>
