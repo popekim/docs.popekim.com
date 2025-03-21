@@ -1,39 +1,47 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Pope's Dev Docs</title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="alternate" href="https://docs.popekim.com/" hreflang="x-default" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-<body class="bg-light">
-  <div class="jumbotron text-center">
-    <h1 lang="en">Select Your Langauge</h1>
-    <h1 lang="ko">언어를 선택하세요</h1>
-  </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-sm-12">
-      <a href="/en"><img class="w-100 h-100" src="en.svg" title="English" alt="English"/></a>
-	</div>
-    <div class="col-md-6 col-sm-12">
-      <a href="/ko"><img class="w-100 h-100" src="ko.svg" title="한국어" alt="한국어"/></a>
-	</div>
-  </div>
-</div>
-<script> 
-  var language = window.navigator.userLanguage || window.navigator.language;
-  if (language.startsWith('ko')) {
-    window.location = "https://docs.popekim.com/ko/"; 
-  }
-  else if (language.startsWith('en')) {
-    window.location = "https://docs.popekim.com/en/"; 
-  }
-</script> 
-</body>
+  <head>
+    <title>Pope Docs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/en/assets/favicon.ico" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+KR:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Yeon+Sung&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/en/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+  </head>
+  <body>
+    <div id="language-select" class="background">
+        <div class="container pt-5">
+            <div class="mb-4"><img class="logo" src="/en/assets/img/navbar_logo.png" />&nbsp;&nbsp;<span class="align-middle font-weight-bold logo-text">| Blog</span></div>
+            
+            <div>
+                <h1 class="header-text font-weight-bold">Hello!</h1>
+                <h1 class="header-text font-weight-bold">Choose a language.</h1>
+    
+                <div class="d-flex justify-content-around mt-5 pt-sm-3">
+                    <a id="link-en" class="language-link text-center text-dark font-weight-bold" href="/en">
+                        <div class="card language-card border-0 mb-4">
+                            <div class="card-body d-flex justify-content-center align-items-center comic-font">Abc</div>
+                        </div>
+                        <span class="language-text">English</span>
+                    </a>
+                    <a id="link-ko" class="language-link text-center text-dark font-weight-bold" href="/ko">
+                        <div class="card language-card border-0 mb-4">
+                            <div class="card-body d-flex justify-content-center align-items-center korean-comic-font">ㄱㄴㄷ</div>
+                        </div>
+                        <span class="language-text korean-font">한국어</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/site.js" type="text/javascript"></script>
+  </body>
 </html>
