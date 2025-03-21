@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    const LOCALE_COOKIE_NAME = "POPEKIM.docs.locale";
+    const LOCALE_COOKIE_NAME = "p.site.locale";
     const LOCALE_ENGLISH = "en";
     const LOCALE_KOREAN = "ko";
 
