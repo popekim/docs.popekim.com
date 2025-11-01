@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>POCU 아카데미용 C 코딩 표준 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1762032823369147567" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/coding-standards/pocu-c" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">POCU 아카데미용 C 코딩 표준</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2024-09-15
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/coding-standards/pocu-c.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <h2 id="머리말">머리말</h2>
+<h3 id="기본-원칙">기본 원칙</h3>
+
+<ol>
+  <li>가독성을 최우선으로 삼는다. (대부분의 경우 코드 그 자체가 문서의 역할을 해야 함)</li>
+  <li>문제가 있을 경우 최대한 빨리 크래시가 나거나 assert에 걸리도록 코드를 작성한다. 어떻게든 프로그램을 돌게 만들다가 나중에 크래시가 나는 것보다 나쁜 상황은 없다.</li>
+  <li>본 코딩표준을 따라 잘 짜여진 기존의 코드에서 배운다.</li>
+</ol>
+
+<h3 id="참조문서">참조문서</h3>
+
+<p>이 코딩 표준은 아래의 코딩 표준들에서 영감을 얻었음.</p>
+
+<ul>
+  <li><a href="https://www2.cs.arizona.edu/~mccann/cstyle.html">Indian Hill</a></li>
+  <li><a href="https://www.kernel.org/doc/html/latest/process/coding-style.html">Linux Kernel</a></li>
+  <li><a href="https://www.gnu.org/prep/standards/html_node/Writing-C.html#Writing-C">GNU</a></li>
+</ul>
+
+<h2 id="i-메인-코딩-표준">I. 메인 코딩 표준</h2>
+
+<ol>
+  <li>
+    <p>변수, 구조체, <code>typedef</code>, 함수 매개변수, 함수의 이름은 스네이크 표기법을 따른다.</p>
+
+    <pre><code class="language-c">int num_monsters;
+</code></pre>
+  </li>
+  <li>
+    <p>단순히 반복문에 사용되는 변수가 아닌 경우엔 <code>i</code>, <code>e</code> 같은 변수명 대신 <code>index</code>, <code>employee</code> 처럼 변수에 저장되는 데이터를 한 눈에 알아볼 수 있는 변수명을 사용한다.</p>
+  </li>
+  <li>
+    <p>전역 변수의 이름 앞에는 <code>g_</code>를 붙인다.</p>
+
+    <pre><code class="language-c">int g_num_monsters = 0;
+</code></pre>
+  </li>
+  <li>
+    <p>정적(<code>static</code>) 변수의 이름 앞에는 <code>s_</code>를 붙인다.</p>
+
+    <pre><code class="language-c">static int s_num_monsters = 0;
+</code></pre>
+  </li>
+  <li>
+    <p>함수의 이름은 동사로 시작한다.</p>
+
+    <pre><code class="language-c">int calculate_income(void)
+{
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>단, 단순히 부울(bool) 상태를 반환하는 메서드의 동사 부분은 최대한 <code>is</code>, <code>can</code>, <code>has</code>, <code>should</code>를 사용하되 그러는 것이 부자연스러울 경우에는 상태를 나타내는 다른 3인칭 단수형 동사를 사용한다.</p>
+
+    <pre><code class="language-c"> int is_alive(const person_t* person);
+ int has_child(const person_t* person);
+ int can_accept(const person_t* person);
+ int should_delete(const person_t* person);
+ int exists(const person_t* person);
+</code></pre>
+  </li>
+  <li>
+    <p>열거형(<code>enum</code>)의 이름은 스네이크 표기법을 따른다.</p>
+
+    <pre><code class="language-c">enum game_role {
+    GAME_ROLE_MID,
+    GAME_ROLE_JUNGLE
+};
+</code></pre>
+  </li>
+  <li>
+    <p>열거형 상수의 이름은 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+
+    <pre><code class="language-c">enum game_role {
+    GAME_ROLE_MID,
+    GAME_ROLE_JUNGLE
+};
+</code></pre>
+  </li>
+  <li>
+    <p>열거형 상수는 언제나 열거형 이름으로 시작하여야 한다.</p>
+
+    <pre><code class="language-c">enum month {
+    MONTH_JAN,
+    MONTH_FEB
+};
+</code></pre>
+  </li>
+  <li>
+    <p><code>typedef</code>의 끝에 <code>_t</code>를 붙인다.</p>
+
+    <pre><code class="language-c">typedef enum color { 
+    COLOR_RED,
+    COLOR_GREEN, 
+    COLOR_BLUE 
+} color_t;
+</code></pre>
+  </li>
+  <li>
+    <p>가능한 열거형과 구조체에 <code>typedef</code>를 사용한다.</p>
+
+    <pre><code class="language-c">typedef enum color { 
+    COLOR_RED,
+    COLOR_GREEN, 
+    COLOR_BLUE 
+} color_t;
+    
+typedef struct point {
+    int x;
+    int y;
+} point_t;
+</code></pre>
+  </li>
+  <li>
+    <p>상수 또는 <code>#define</code> 으로 정의된 상수의 이름은 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+
+    <pre><code class="language-c">#define NUMBER_ZERO (0)
+const int INTEGER_ZERO = 0;
+</code></pre>
+  </li>
+  <li>
+    <p><code>#define</code>으로 정의한 숫자나 표현식은 소괄호로 감싼다.</p>
+
+    <pre><code class="language-c">#define PI (3.14)
+#define CIRCLE_AREA(r) (PI * r * r)
+</code></pre>
+  </li>
+  <li>
+    <p>언제나 함수 원형으로 반환형을 선언한다. 컴파일러가 지멋대로 추측하는 일은 없도록 한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">calculate_income(const unsigned int month);
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">unsigned int calculate_income(const unsigned int month);
+</code></pre>
+  </li>
+  <li>
+    <p>값을 반환하는 함수의 이름은 무엇을 반환하는지 알 수 있게 짓는다.</p>
+
+    <pre><code class="language-c">unsigned int get_age(void)
+{
+    return g_age;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>매개변수를 받지 않는 함수는 매개변수 목록에 반드시 <code>void</code>를 넣어준다.</p>
+
+    <pre><code class="language-c">int get_number(void)
+{
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>널 포인터를 반환하는 함수의 이름은 <code>_or_null</code>로 끝나야 한다.</p>
+
+    <pre><code class="language-c">const char* get_owner_name_or_null(const car_type_t car_type)
+{
+    ...
+    
+    return NULL;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>널 포인터를 허용하는 매개변수의 이름은 <code>_or_null</code>로 끝나야 한다.</p>
+
+    <pre><code class="language-c">const char* get_owner_name_or_null(const car_type_t* car_type_or_null)
+{
+    ...
+    
+    return NULL;
+}
+</code></pre>
+  </li>
+  <li>
+    <p><code>switch</code> 문 안에 언제나 <code>default</code> 케이스를 넣는다.</p>
+
+    <pre><code class="language-c">switch (op) {
+case 0:
+    /* intentional fallthrough */
+case 1:
+    printf("valid entry");
+    break;
+default:
+    printf("invalid entry");
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>일부러 <code>case</code> 문을 다음 <code>case</code> 문으로 넘어가게 할 때에는 <code>/* intentional fallthrough */</code> 이란 주석을 넣는다.</p>
+
+    <pre><code class="language-c">switch (op) {
+case 0:
+    /* intentional fallthrough */
+case 1:
+    printf("valid entry");
+    break;
+default:
+    printf("invalid entry");
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>모든 <code>case</code> 문은 <code>break</code> 또는 <code>return</code> 키워드를 사용한다. 단, 일부러 <code>case</code> 문을 다음 <code>case</code> 문으로 넘어가게 하고 싶을 때는 예외로 한다.</p>
+
+    <pre><code class="language-c">switch (op) {
+case 0:
+    /* intentional fallthrough */
+case 1:
+    printf("valid entry");
+    break;
+default:
+    printf("invalid entry");
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p><code>switch</code> 문에서 <code>default</code> 케이스가 일어나지 말아야 한다면 <code>assert(0)</code>을 사용한다.</p>
+
+    <pre><code class="language-c">switch (type) {
+case 1:
+    ... 
+    break;
+default:
+    assert(0);
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>변수의 이름을 숨기지 않는다. 그 대신 다른 변수명을 사용한다.</p>
+
+    <pre><code class="language-c">/* DO NOT DO THIS */
+int a = 0;
+    
+{
+    int a = 1;
+    printf(a); /* 1 */
+}
+    
+printf(a): /* 0 */
+</code></pre>
+  </li>
+  <li>
+    <p>외부 헤더파일을 인클루드 할 때는 <code>#include&lt;&gt;</code>를 사용한다. 자체 개발한 헤더파일은 <code>#include ""</code> 로 인클루드한다.</p>
+  </li>
+  <li>
+    <p>외부 헤더파일을 먼저, 그리고 자체 개발한 헤더파일을 인클루드 한다. 이 때 가능하면 알파벳 순서를 따른다.</p>
+
+    <pre><code class="language-c">#include &lt;assert.h&gt;
+#include &lt;stdio.h&gt;
+    
+#include "event_loop.h"
+</code></pre>
+  </li>
+  <li>
+    <p>대문자로 표현한 파일명을 사용하여 인클루드 가드(include guard)를 사용한다.</p>
+
+    <p>Filename: grandparent.h</p>
+
+    <pre><code class="language-c">#ifndef GRANDPARENT_H
+#define GRANDPARENT_H
+    
+const char* g_grandfather_name = "Joseph";
+    
+#endif /* GRANDPARENT_H */
+</code></pre>
+  </li>
+  <li>
+    <p>인클루드 가드를 닫는 곳에 대문자로 표현한 파일명을 주석으로 삽입한다.</p>
+
+    <p>Filename: grandparent.h</p>
+
+    <pre><code class="language-c">#ifndef GRANDPARENT_H
+#define GRANDPARENT_H
+    
+const char* g_grandfather_name = "Joseph";
+    
+#endif /* GRANDPARENT_H */
+</code></pre>
+  </li>
+  <li>
+    <p>최대한 <code>const</code> 키워드를 많이 사용한다. 이는 지역 변수나 함수 매개변수에도 마찬가지이다.</p>
+  </li>
+  <li>
+    <p><code>const</code> 값형을 반환하지 않는다. <code>const</code> 반환은 포인터에만 쓴다.</p>
+  </li>
+  <li>
+    <p>불리언 비교에 숫자를 그대로 사용하지 않는다. 그 대신 0과 비교를 한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">int counter = 10;
+while (counter--) {
+    printf("%d\n", counter);
+}
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">int counter = 10;
+while (counter-- != 0) {
+    printf("%d\n", counter);
+}
+</code></pre>
+  </li>
+  <li>
+    <p>널 포인터를 표현할 때는 숫자 0 대신 <code>NULL</code>을 <code>#define</code>해 놓은 것을 사용한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">#define PRICE (2)
+    
+void increase_price(int* current_price)
+{
+    assert(current_price != 0);
+    
+    *current_price += PRICE ;
+}
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">#define PRICE (2)
+    
+void increase_price(int* current_price)
+{
+    assert(current_price != NULL);
+    
+    *current_price += PRICE ;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>재귀 함수의 이름은 <code>recursive</code>로 끝난다.</p>
+
+    <pre><code class="language-c">void fibonacci_recursive()
+{
+    ...
+}
+</code></pre>
+  </li>
+  <li>
+    <p>포인터가 out 매개변수로 사용될 경우 매개변수 이름 앞에 <code>out_</code>을 붙인다.</p>
+
+    <p>함수:</p>
+
+    <pre><code class="language-c">void get_screen_dimension(int* const out_width, int* const  out_height)
+{
+}
+</code></pre>
+
+    <p>호출자:</p>
+
+    <pre><code class="language-c">int width;
+int height;
+get_screen_dimension(&amp;width, &amp;height);
+</code></pre>
+  </li>
+  <li>
+    <p>위 out 매개변수는 널 포인터가 아니어야 한다. (이 때, <code>if</code>문이 아니라 <code>assert</code>를 쓸 것)</p>
+
+    <pre><code class="language-c">void get_screen_dimension(int* const out_width, int* const  out_height)
+{
+    assert(out_width != NULL);
+    assert(out_height != NULL);
+}
+</code></pre>
+  </li>
+  <li>
+    <p>모든 컴파일러 경고(warning)은 고친다.</p>
+  </li>
+  <li>
+    <p>레이블 명은 스네이크 표기법을 따른다.</p>
+
+    <pre><code class="language-c">goto fatal_error;
+    
+…
+    
+fatal_error:
+    printf(“A fatal error has occurred”);
+    return 0;
+</code></pre>
+  </li>
+  <li>
+    <p><code>goto</code> 문은 언제나 아래 쪽에 위치한 레이블로만 점프할 수 있다..</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">begin:
+    …
+    
+if (finshed_task == 0)
+{
+    goto begin;
+}
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">if (x != 3)
+{
+    goto error;
+}
+    
+…
+    
+error:
+    printf(“An error has occurred”);
+</code></pre>
+  </li>
+  <li>
+    <p>전역 변수의 선언은 헤더파일 안에서 <code>extern</code> 키워드를 사용하여 한다.</p>
+
+    <p>Filename: globals.h</p>
+
+    <pre><code class="language-c">#ifndef GLOBALS_H
+#define GLOBALS_H
+    
+/* declare */
+extern int g_counter;
+    
+#endif /* GLOBALS_H */
+</code></pre>
+
+    <p>Filename: globals.c</p>
+
+    <pre><code class="language-c">/* define */
+int g_counter = 0;
+    
+Filename: main.c
+    
+#include &lt;stdio.h&gt;
+#include "globals.h"
+    
+int main(void)
+{
+    printf("current counter: %d", g_counter);
+    
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>변수는 가능한 최소한의 범위로 제한한다.</p>
+  </li>
+  <li>
+    <p>한 함수에서만 사용되는 변수는 반드시 그 함수 안에서 지역변수나 정적변수로 선언되어야 한다.</p>
+  </li>
+  <li>
+    <p>한 파일에 존재하는 여러 함수에서만 사용하는 변수가 있다면 그 변수는 그 파일 안에서 정적 변수로 선언되어야 한다.</p>
+  </li>
+  <li>
+    <p>여러 소스 파일에서 사용하는 변수들만 전역 변수로 선언한다.</p>
+  </li>
+  <li>
+    <p>초기화 목록에서 요소를 생략하여 배열을 0으로 초기화 할 때는 0 이후에 쉼표(,)를 넣어 의도가 명확히 보이도록 한다.</p>
+
+    <pre><code class="language-c">char buffer[30] = { 0, }
+</code></pre>
+  </li>
+  <li>
+    <p>동적으로 할당한 메모리를 저장하는 포인터 변수의 이름은 <code>pa_</code>으로 시작한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">int* nums;
+    
+nums = malloc(LENGTH * sizeof(int));
+    
+free(nums);
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">int* pa_nums;
+    
+pa_nums = malloc(LENGTH * sizeof(int));
+    
+free(pa_nums);
+</code></pre>
+  </li>
+  <li>
+    <p>동적으로 할당한 메모리 주소를 저장하고 있는 포인터 변수를 연산에 사용할 때는 그 포인터의 사본을 만들어 사용한다. 이는 잘못된 메모리 해제를 막기 위함이다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">int* nums;
+    
+nums = malloc(LENGTH * sizeof(int));
+    
+for (i = 0; i &lt; LENGTH; ++i) {
+    *nums++ = 15 * (i + 1);
+}
+    
+free(nums); /* 잘못된 메모리를 해제함 */
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">void* pa_nums;
+int* p;
+    
+pa_nums = malloc(LENGTH * sizeof(int));
+    
+p = pa_nums;
+    
+for (i = 0; i &lt; LENGTH; ++i) {
+    *p++ = 15 * (i + 1);
+}
+    
+free(pa_nums); /* 올바른 메모리를 해제함 */
+</code></pre>
+  </li>
+  <li>
+    <p>동적으로 할당한 메모리를 해제한 후에는 반드시 포인터 변수에 <code>NULL</code>을 대입한다.</p>
+
+    <pre><code class="language-c">int* nums;
+    
+nums = malloc(LENGTH * sizeof(int));
+    
+...
+    
+free(nums);
+nums = NULL;
+</code></pre>
+  </li>
+  <li>
+    <p>내부에서 동적으로 메모리를 할당하는 함수의 이름은 반드시 <code>_malloc</code>으로 난다.</p>
+
+    <pre><code class="language-c">const char* combine_string_malloc(const char* str1, const char* str2)
+{
+    void* pa_str;
+    char* p;
+    
+    pa_str = malloc(size);
+    p = pa_str;
+    
+    /* combine string here */
+    
+    return pa_str;
+}
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="ii-소스-코드-포맷팅">II. 소스 코드 포맷팅</h2>
+
+<ol>
+  <li>
+    <p>들여쓰기는 4칸의 스페이스로 한다.</p>
+  </li>
+  <li>
+    <p>이항 연산자에는 앞뒤로 스페이스 1칸을 넣는다.</p>
+
+    <p>BAD:</p>
+    <pre><code class="language-c"> int a = nums[n+1];
+</code></pre>
+
+    <p>GOOD:</p>
+    <pre><code class="language-c"> int a = nums[n + 1];
+</code></pre>
+  </li>
+  <li>
+    <p>함수의 범위를 나타내는 중괄호는 언제나 새로운 줄에서 열고 닫으며, 들여쓰기는 함수 헤더의 위치에 맞춘다.</p>
+
+    <pre><code class="language-c">int make_decision(int beans)
+{
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>조건문 및 반복문의 범위 시작을 나타내는 중괄호는 새로운 줄에서 열지 않는다.</p>
+
+    <pre><code class="language-c">if (beans == 2) {
+    beans++;
+} else if (beans % 3 == 0) {
+    beans += 5;
+} else {
+    beans += 2;
+}
+   
+do {
+    beans++;
+} while (beans &lt; 100);
+</code></pre>
+  </li>
+  <li>
+    <p>임의로 새로운 범위를 만들기 위해 중괄호를 사용할 때는 새로운 줄에 열고 닫는다.</p>
+
+    <pre><code class="language-c">int main(void)
+{
+    {
+        /* 새로운 범위 */
+    }
+   
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>구조체, 열거형, 공용체의 중괄호는 새로운 줄에서 열지 않는다.</p>
+
+    <pre><code class="language-c">typedef enum color { 
+    COLOR_RED,
+    COLOR_GREEN, 
+    COLOR_BLUE 
+} color_t;
+   
+typedef struct point {
+    int x;
+    int y;
+} point_t;
+   
+typedef union number {
+    int integer_value;
+    float float_value;
+} number_t;
+</code></pre>
+  </li>
+  <li>
+    <p>조건문 및 반복문 블록에 들어가는 코드가 한 줄일 때에도 언제나 중괄호를 사용한다.</p>
+
+    <pre><code class="language-c">if (x &gt; y) {
+    x = y;
+} else {
+    y = x * y - 2;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>함수 반환형은 함수 명과 동일한 줄에서 선언한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c">unsigned int
+    calculate_income(const unsigned int month);
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c">unsigned int calculate_income(const unsigned int month);
+</code></pre>
+  </li>
+  <li>
+    <p>함수 매개변수는 쉼표(,) 뒤에 스페이스를 하나 넣어서 분리한다.</p>
+
+    <pre><code class="language-c">int sum(const int a, const int b, const int c)
+{
+    return a + b + c;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>변수와 연산자 사이에는 스페이스를 한 칸 넣는다.</p>
+
+    <pre><code class="language-c">if (x + b == x * (c + 22)) {
+}
+</code></pre>
+  </li>
+  <li>
+    <p><code>if</code>, <code>switch</code>, <code>case</code>, <code>for</code>, <code>do</code>, <code>while</code> 키워드 뒤에 따라오는 소괄호 앞에는 스페이스를 한 칸 넣는다.</p>
+
+    <pre><code class="language-c"> if (xyz == zyx) {
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>함수 이름과 소괄호 사이에는 스페이스를 넣지 않는다.</p>
+
+    <pre><code class="language-c"> int get_zero(void) 
+ {
+     return 0;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p><code>case</code> 문의 들여쓰기는 <code>switch</code> 문의 닫는 중괄호와 같게 맞춘다.</p>
+
+    <pre><code class="language-c"> switch (op) {
+ case 0:
+     /* intentional fallthrough */
+ case 1:
+     printf("valid entry");
+     break;
+ default:
+     printf("invalid entry");
+     break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>인클루드 문과 코드 사이에는 반드시 빈 줄을 하나 넣는다.</p>
+
+    <pre><code class="language-c"> #include &lt;stdio.h&gt;
+ #include "globals.h"
+    
+ int main(void)
+ {
+     /* code here */
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>포인터 표기는 데이터 형의 오른쪽에 붙인다.</p>
+
+    <pre><code class="language-c"> int* number;
+</code></pre>
+  </li>
+  <li>
+    <p>한 줄에 변수 하나만 선언한다.</p>
+
+    <p>틀린 방식:</p>
+
+    <pre><code class="language-c"> int counter, index;
+</code></pre>
+
+    <p>올바른 방식:</p>
+
+    <pre><code class="language-c"> int counter;
+ int index;
+</code></pre>
+  </li>
+  <li>
+    <p><code>goto</code> 레이블은 블록 스코프에 맞춰 정렬한다.</p>
+
+    <pre><code class="language-c"> void do_something()
+ {
+     int i;
+     int j;
+    
+     goto my_label;
+    
+ my_label:
+     for (i = 0; i &lt; 10; ++i) {
+         for (j = 0; j &lt; 10; ++j) {
+             if (j == 2) {
+                 goto my_another_label;
+             }
+         }
+    
+     my_another_label:
+         /* do something */
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>전처리기 지시자는 (<code>#include</code>, <code>#define</code>, <code>#if</code>, <code>#elif</code>, <code>#endif</code>, <code>#ifdef</code>, etc) 인덴트 하지 않는다.</p>
+
+    <p>BAD:</p>
+
+    <pre><code class="language-c"> int magic()
+ {
+     #if 1
+ printf("indent!!");
+     #endif
+ }
+</code></pre>
+
+    <p>GOOD:</p>
+
+    <pre><code class="language-c"> int magic()
+ {
+ #if 1
+     printf("indent!!");
+ #endif
+ }
+</code></pre>
+  </li>
+</ol>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a008">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        프로그래밍 공부순서 | 코딩공부, 지금 시작하세요 | 평생소장 컴공강의
+                                    </h2>
+                                    <p class="description m-0">10년 뒤에도 살아남는 프로그래머가 되려면 기본기부터 제대로 배워야 합니다. POCU 아카데미에서 시작하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

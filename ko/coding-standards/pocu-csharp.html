@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>POCU 아카데미용 C# 코딩 표준 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1762032823369147567" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/coding-standards/pocu-csharp" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">POCU 아카데미용 C# 코딩 표준</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2024-02-02
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/coding-standards/pocu-csharp.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>본 코딩 표준은 <a href="/ko/coding-standards/csharp">Pope Kim의 C# 코딩 표준</a>을 <a href="https://pocu.academy/ko/">POCU 아카데미</a>에 적합하게 수정한 것입니다. 취소선(<del>취소선</del>) 표시가 된 항목들은 무시해주세요.</p>
+
+<ul>
+  <li>원문(영어): <a href="/en/coding-standards/csharp">C# Coding Standards</a></li>
+</ul>
+
+<h2 id="머리말">머리말</h2>
+
+<h3 id="기본-원칙">기본 원칙</h3>
+
+<ol>
+  <li>가독성을 최우선으로 삼는다. (대부분의 경우 코드 그 자체가 문서의 역할을 해야 함)</li>
+  <li>정말 합당한 이유가 있지 않는 한, 통합개발환경(IDE)의 자동 서식을 따른다. (비주얼 스튜디오의 “Ctrl + K + D” 기능)</li>
+  <li>본 코딩표준을 따라 잘 짜여진 기존의 코드에서 배운다.</li>
+</ol>
+
+<h3 id="참조문서">참조문서</h3>
+
+<p>이 코딩 표준은 아래의 코딩 표준들에서 영감을 얻었음.</p>
+
+<ul>
+  <li><a href="https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard/">언리얼 엔진 4 코딩 표준</a></li>
+  <li><a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/codestyleconventions.doc">둠 3 코드 스타일과 규칙</a></li>
+  <li><a href="http://www.idesign.net/downloads/getdownload/1985">IDesign C# 코딩 표준</a></li>
+</ul>
+
+<h3 id="ide-도우미">IDE 도우미</h3>
+
+<p>비주얼 스튜디오에 import할 수 있는 세팅은 <a href="https://github.com/popekim/CodingStyle/tree/master/CSharp">여기서</a> 다운받을 수 있습니다.</p>
+
+<h2 id="pocu-아카데미에-비적용-사항"><a href="https://pocu.academy">POCU 아카데미</a>에 비적용 사항</h2>
+
+<ul>
+  <li>있을 경우 추후 추가 계획</li>
+</ul>
+
+<h2 id="i-메인-코딩-표준">I. 메인 코딩 표준</h2>
+
+<ol>
+  <li>
+    <p>클래스와 구조체의 이름은 파스칼 표기법을 따른다.</p>
+
+    <pre><code class="language-cs">class PlayerManager;
+struct PlayerData;
+</code></pre>
+  </li>
+  <li>
+    <p>지역 변수 그리고 함수의 매개 변수의 이름은 카멜 표기법을 따른다.</p>
+
+    <pre><code class="language-cs">public void SomeMethod(int someParameter)
+{
+    int someNumber;
+    int id;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>메서드 이름은 기본적으로 동사(명령형)+명사(목적어)의 형태로 짓는다.</p>
+
+    <pre><code class="language-cs">public uint GetAge()
+{
+    // 함수 구현부...
+}
+</code></pre>
+  </li>
+  <li>
+    <p>단, 단순히 부울(boolean) 상태를 반환하는 메서드의 동사 부분은 최대한 <code>Is</code>, <code>Can</code>, <code>Has</code>, <code>Should</code>를 사용하되 그러는 것이 부자연스러울 경우에는 상태를 나타내는 다른 3인칭 단수형 동사를 사용한다.</p>
+
+    <pre><code class="language-cs">public bool IsAlive(Person person);
+public bool HasChild(Person person);
+public bool CanAccept(Person person);
+public bool ShouldDelete(Person person);
+public bool Exists(Person person);
+</code></pre>
+  </li>
+  <li>
+    <p>아래에 제시된 예를 제외하곤 모든 메서드의 이름은 파스칼 표기법을 따른다.</p>
+
+    <pre><code class="language-cs">public uint GetAge()
+{
+    // 함수 구현부...
+}
+</code></pre>
+  </li>
+  <li>
+    <p>public 메서드가 아닌 경우 카멜 표기법을 따른다. Visual Studio를 사용 시에는 별도의 스타일 규칙을 추가해야 할 수도 있음. (<a href="https://stackoverflow.com/questions/40856186/naming-rule-violation">자세한 설명</a>)</p>
+
+    <pre><code class="language-cs">private uint getAge()
+{
+    // 함수 구현부...
+}
+</code></pre>
+  </li>
+  <li>
+    <p>상수의 이름은 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+
+    <pre><code class="language-cs">const int SOME_CONSTANT = 1;
+</code></pre>
+  </li>
+  <li>
+    <p>상수로 사용하는 개체형 변수에는 <code>static readonly</code>를 사용한다.</p>
+
+    <pre><code class="language-cs">public static readonly MyConstClass MY_CONST_OBJECT = new MyConstClass();
+</code></pre>
+  </li>
+  <li>
+    <p>상수로 사용하는 <code>static readonly</code> 변수는 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+  </li>
+  <li>
+    <p>초기화 후 값이 변하지 않는 변수는 <code>readonly</code>로 선언한다.</p>
+
+    <pre><code class="language-cs"> public class Account
+ {
+     private readonly string mPassword;
+    
+     public Account(string password)
+     {
+         mPassword = password;
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>네임스페이스의 이름은 파스칼 표기법을 따른다.</p>
+
+    <pre><code class="language-cs"> namespace System.Graphics
+</code></pre>
+  </li>
+  <li>
+    <p>부울(boolean) 변수는 앞에 <code>b</code>를 붙인다.</p>
+
+    <pre><code class="language-cs"> bool bFired;			    // 지역변수
+ private bool mbFired;		// private 멤버변수
+</code></pre>
+  </li>
+  <li>
+    <p>부울 프로퍼티는 앞에 <code>Is</code>, <code>Has</code>, <code>Can</code>, <code>Should</code> 중에 하나를 붙인다.</p>
+
+    <pre><code class="language-cs"> public bool IsFired { get; private set; }
+ public bool HasChild { get; private set; }
+ public bool CanModal { get; private set; }
+ public bool ShouldRedirect { get; private set; }
+</code></pre>
+  </li>
+  <li>
+    <p>인터페이스를 선언할 때는 앞에 <code>I</code>를 붙인다.</p>
+
+    <pre><code class="language-cs"> interface ISomeInterface;
+</code></pre>
+  </li>
+  <li>
+    <p>열거형을 선언할 때는 앞에 <code>E</code>를 붙인다</p>
+
+    <pre><code class="language-cs"> public enum EDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>구조체를 선언할 때는 앞에 <code>S</code>를 붙인다. 단, <code>readonly struct</code>일 때는 그렇지 아니한다</p>
+
+    <pre><code class="language-cs"> public struct SUserID;
+</code></pre>
+  </li>
+  <li>
+    <p><code>private</code> 멤버 변수명은 앞에 <code>m</code>을 붙이고 파스칼 표기법을 따른다</p>
+
+    <pre><code class="language-cs"> public class Employee
+ {
+     public int DepartmentID { get; set; }
+     private int mAge;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>값을 반환하는 함수의 이름은 무엇을 반환하는지 알 수 있게 짓는다.</p>
+
+    <pre><code class="language-cs"> public uint GetAge();
+</code></pre>
+  </li>
+  <li>
+    <p>단순히 반복문에 사용되는 변수가 아닌 경우엔 <code>i</code>, <code>e</code> 같은 변수명 대신 <code>index</code>, <code>employee</code> 처럼 변수에 저장되는 데이터를 한 눈에 알아볼 수 있는 변수명을 사용한다.</p>
+  </li>
+  <li>
+    <p>뒤에 추가적인 단어가 오지 않는 경우 줄임말은 모두 대문자로 표기한다.</p>
+
+    <pre><code class="language-cs"> public int OrderID { get; private set; }
+ public int HttpCode { get; private set; }
+</code></pre>
+  </li>
+  <li>
+    <p>getter와 setter 대신 프로퍼티를 사용한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+
+    <pre><code class="language-cs"> public class Employee
+ {
+     private string mName;
+     public string GetName();
+     public string SetName(string name);
+ }
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+
+    <pre><code class="language-cs"> public class Employee
+ {
+     public string Name { get; set; }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>지역 변수를 선언할 때는 그 지역 변수를 사용하는 코드와 동일한 줄에 선언하는 것을 원칙으로 한다.</p>
+  </li>
+  <li>
+    <p><code>double</code>이 반드시 필요한 경우가 아닌 이상 부동 소수점 값에 <code>f</code>를 붙여준다</p>
+
+    <pre><code class="language-cs"> float f = 0.5F;
+</code></pre>
+  </li>
+  <li>
+    <p><code>switch</code> 문에 언제나 <code>default:</code> 케이스를 넣는다.</p>
+
+    <pre><code class="language-cs"> switch (number)
+ {
+     case 0:
+         ... 
+         break;
+     default:
+         break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p><code>switch</code> 문에서 <code>default:</code> 케이스가 절대 실행될 일이 없는 경우, <code>default:</code> 안에 `Debug.Fail()을 추가한다.</p>
+
+    <pre><code class="language-cs"> switch (type)
+ {
+     case 1:
+         ... 
+         break;
+     default:
+         Debug.Fail("unknown type");
+         break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>코드를 작성하면서 세운 모든 가정에 <code>Debug.Assert()</code>를 넣는다.</p>
+  </li>
+  <li>
+    <p>재귀 함수는 이름 뒤에 <code>Recursive</code>를 붙인다.</p>
+
+    <pre><code class="language-cs"> public void FibonacciRecursive();
+</code></pre>
+  </li>
+  <li>
+    <p>클래스 안에서 멤버 변수와 메서드의 등장 순서는 다음을 따른다.</p>
+
+    <ol>
+      <li>멤버 변수</li>
+      <li>프로퍼티 (단, 프로퍼티와 대응하는 private 멤버변수는 프로퍼티 바로 위에 적음)</li>
+      <li>생성자</li>
+      <li>메서드 (public -&gt; private 순서로)</li>
+    </ol>
+  </li>
+  <li>
+    <p>클래스 안에서 연관 있는 메서드끼리 그룹을 짓는다. 멤버 변수도 마찬가지이다.</p>
+  </li>
+  <li>
+    <p>매개변수 자료형이 범용적인 경우, 함수 오버로딩을 피한다.</p>
+
+    <p><strong>올바른 방식:</strong></p>
+
+    <pre><code class="language-cs"> public Anim GetAnimByIndex(int index);
+ public Anim GetAnimByName(string name);
+</code></pre>
+
+    <p><strong>틀린 방식:</strong></p>
+
+    <pre><code class="language-cs"> public Anim GetAnim(int index);
+ public Anim GetAnim(string name);
+</code></pre>
+  </li>
+  <li>
+    <p>클래스는 각각 독립된 소스 파일에 있어야 한다. 단, 작은 클래스 몇 개를 한 파일 안에 같이 넣어두는 것이 상식적일 경우 예외를 허용한다.</p>
+  </li>
+  <li>
+    <p>파일 이름은 대소문자까지 포함해서 반드시 클래스 이름과 일치해야 한다.</p>
+
+    <pre><code class="language-cs"> public class PlayerAnimation 
+ {
+ }
+</code></pre>
+
+    <pre><code> PlayerAnimation.cs
+</code></pre>
+  </li>
+  <li>
+    <p>여러 파일이 하나의 클래스를 이룰 때(즉, partial 클래스), 파일 이름은 클래스 이름으로 시작하고, 그 뒤에 마침표와 세부 항목 이름을 붙인다.</p>
+
+    <pre><code class="language-cs"> public partial class Human;
+</code></pre>
+
+    <pre><code> Human.Head.cs
+ Human.Body.cs
+ Human.Arm.cs
+</code></pre>
+  </li>
+  <li>
+    <p>특정 조건이 반드시 충족되어야 한다고 가정(assertion)하고 짠 코드 모든 곳에 <code>assert</code>를 사용한다. <code>assert</code>는 복구 불가능한 조건이다.(예: 대부분의 함수는 다음과 같은 <code>assert</code>를 가질 수도… <code>Debug.Assert</code>(매개변수의 null 값 검사) )</p>
+  </li>
+  <li>
+    <p>비트 플래그 열거형은 이름 뒤에 <code>Flags</code>를 붙인다.</p>
+
+    <pre><code class="language-cs"> [Flags]
+ public enum EVisibilityFlags
+ {
+     None = 0,
+     Character = 1 &lt;&lt; 0,
+     Terrain = 1 &lt;&lt; 1,
+     Building = 1 &lt;&lt; 2,
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>디폴트 매개 변수 대신 함수 오버로딩을 선호한다.</p>
+  </li>
+  <li>
+    <p>디폴트 매개 변수를 사용하는 경우, <code>null</code>이나 <code>false</code>, <code>0</code> 같이 비트 패턴이 0인 값을 사용한다.</p>
+  </li>
+  <li>
+    <p>변수 가리기(variable shadowing)는 허용되지 않는다. 외부 변수가 동일한 이름을 사용중이라면 내부 변수에는 다른 이름을 사용한다.</p>
+
+    <pre><code class="language-cs"> public class SomeClass
+ {
+     public int Count { get; set; }
+     public void Func(int count)
+     {
+         for (int count = 0; count != 10; ++count)
+         {
+             // count를 사용
+         }
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>언제나 <code>System.Collections</code>에 들어있는 컨테이너 대신에 <code>System.Collections.Generic</code>에 들어있는 컨테이너를 사용한다. 순수 배열을 사용하는 것도 괜찮다.</p>
+  </li>
+  <li>
+    <p><code>var</code> 키워드를 사용하지 않으려 노력한다. 단, 대입문의 우항에서 데이터형이 명확하게 드러나는 경우, 또는 데이터형이 중요하지 않은 경우에는 예외를 허용한다. <code>IEnumerable</code>에 <code>var</code>를 사용하거나 우항의 <code>new</code> 키워드를 통해 어떤 개체가 생성되는지 알 수 있는 등이 허용되는 경우의 좋은 예이다.</p>
+
+    <pre><code class="language-cs"> var text = "string obviously";
+ var age = 28;
+ var employee = new Employee();
+    
+ string accountNumber = GetAccountNumber();
+</code></pre>
+  </li>
+  <li>
+    <p>싱글턴 패턴 대신에 정적(<code>static</code>) 클래스를 사용한다.</p>
+  </li>
+  <li>
+    <p><code>async void</code> 대신에 <code>async Task</code>를 사용한다. <code>async void</code>가 허용되는 유일한 곳은 이벤트 핸들러이다.</p>
+  </li>
+  <li>
+    <p><del><code>async</code> 메서드명에 <code>-Async</code> 접미사를 붙이지 않는다.</del></p>
+  </li>
+  <li>
+    <p>외부로부터 들어오는 데이터의 유효성은 외부/내부 경계가 바뀌는 곳에서 검증(validate)하고 문제가 있을 경우 내부 함수로 전달하기 전에 반환해 버린다. 이는 경계를 넘어 내부로 들어온 모든 데이터는 유효하다고 가정한다는 뜻이다.</p>
+  </li>
+  <li>
+    <p>따라서 내부 함수에서 예외(익셉션)를 던지지 않으려 노력한다. 예외는 경계에서만 처리하는 것을 원칙으로 한다.</p>
+  </li>
+  <li>
+    <p>위 규칙의 예외: <code>enum</code> 형을 <code>switch</code> 문에서 처리할 때 실수로 처리 안 한 <code>enum</code> 값을 찾기 위해 <code>default:</code> 케이스에서 예외를 던지는 것은 허용.</p>
+
+    <pre><code class="language-cs"> switch (accountType)
+ {
+     case AccountType.Personal:
+         return something;
+     case AccountType.Business:
+         return somethingElse;
+     default:
+         throw new NotImplementedException($"unhandled switch case: {accountType}");
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>함수의 매개변수로 <code>null</code>을 허용하지 않는 것을 추구한다. 특히 <code>public</code> 함수일 경우 더욱 그러하다.</p>
+  </li>
+  <li>
+    <p><code>null</code> 값을 허용하는 매개변수를 사용할 경우 변수명 뒤에 <code>OrNull</code>를 붙인다</p>
+
+    <pre><code class="language-cs"> public Anim GetAnim(string nameOrNull)
+ {
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>함수에서 <code>null</code>을 반환하지 않는 것을 추구한다. 특히 <code>public</code> 함수일 경우 더욱 그러하다. 그러나 때로는 예외를 던지는 것을 방지하기 위해 그래야 할 경우도 있다.</p>
+  </li>
+  <li>
+    <p>함수에서 <code>null</code>을 반환할 때는 함수 이름 뒤에  <code>OrNull</code>을 붙인다.</p>
+
+    <pre><code class="language-cs"> public string GetNameOrNull();
+</code></pre>
+  </li>
+  <li>
+    <p><del>인라인 람다는 한 줄짜리 짧은 코드만 담을 수 있다.</del></p>
+  </li>
+  <li>
+    <p>개체 초기자(object initializer)를 사용하지 않으려고 노력한다. <del>단, <code>required</code> 한정자(C# 11.0)와 초기화 전용 setter(C# 9.0)와 같이 사용할 때는 괜찮다.</del></p>
+  </li>
+  <li>
+    <p>함수에 전달하는 <code>out</code> 매개변수는 별도의 라인에 선언한다. 즉, 인자 목록 안에서 선언하지 않는다.</p>
+  </li>
+  <li>
+    <p>null 병합 연산자(C# 7.0)의 사용을 금한다.</p>
+  </li>
+  <li>
+    <p><code>using</code> 선언(C# 8.0)의 사용을 금한다. 대신 <code>using</code> 문을 사용한다.</p>
+  </li>
+  <li>
+    <p><code>new</code> 키워드 뒤에 반드시 명시적으로 자료형을 적어준다. (즉, C# 9.0의 <code>new()</code> 사용 금지)</p>
+  </li>
+  <li>
+    <p><del>프로퍼티에 <code>private init</code>(C# 9.0)을 최대한 사용한다.</del></p>
+  </li>
+  <li>
+    <p><del>파일 범위 namespace 선언(C# 10.0)을 사용한다</del></p>
+  </li>
+  <li>
+    <p><del>범용적인 자료형을 강타입(strong type)으로 만들 때는<code>readonly record struct</code>(C# 10.0)를 사용한다</del></p>
+  </li>
+</ol>
+
+<h2 id="ii-소스-코드-포맷팅">II. 소스 코드 포맷팅</h2>
+
+<ol>
+  <li>
+    <p>탭(tab)은 비주얼 스튜디오 기본값을 사용하며, 비주얼 스튜디오를 사용하지 않을 시 띄어쓰기 4칸을 탭으로 사용한다.</p>
+  </li>
+  <li>
+    <p>중괄호( <code>{</code> )를 열 때는 언제나 새로운 줄에 연다.</p>
+  </li>
+  <li>
+    <p>중괄호 안( <code>{ }</code> )에 코드가 한 줄만 있더라도 반드시 중괄호를 사용한다.</p>
+
+    <pre><code class="language-cs">if (bSomething)
+{
+    return;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>한 줄에 변수 하나만 선언한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+
+    <pre><code class="language-cs">int counter = 0, index = 0;
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+
+    <pre><code class="language-cs">int counter = 0;
+int index = 0;
+</code></pre>
+  </li>
+</ol>
+
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a008">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        프로그래밍 공부순서 | 코딩공부, 지금 시작하세요 | 평생소장 컴공강의
+                                    </h2>
+                                    <p class="description m-0">10년 뒤에도 살아남는 프로그래머가 되려면 기본기부터 제대로 배워야 합니다. POCU 아카데미에서 시작하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,3082 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>게임 개발자를 위한 물리(2판) 번역 용어표(영한) | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1762032823369147567" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/translation/physics-for-game-developers-terms" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">게임 개발자를 위한 물리(2판) 번역 용어표(영한)</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2022-08-14
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/translation/physics-for-game-developers-terms.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>이 문서는 제(김포프)가 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B1014009768">'게임 개발자를 위한 물리(개정 2판)'</a>을 번역할때 만들었던 번역 용어표로 총 578개의 용어를 담고 있습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">영문용어</th>
+      <th style="text-align: left">번역어</th>
+      <th style="text-align: left">노트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">10/10 maneuver</td>
+      <td style="text-align: left">10/10 조타법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">6 degrees of freedom</td>
+      <td style="text-align: left">6 자유도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">acceleration</td>
+      <td style="text-align: left">가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">accelerometer</td>
+      <td style="text-align: left">가속도계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">adaptive step size</td>
+      <td style="text-align: left">가변 시간간격</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">added mass</td>
+      <td style="text-align: left">부가질량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">added mass coefficient</td>
+      <td style="text-align: left">부가질량계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aerostatic lift</td>
+      <td style="text-align: left">양력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aft</td>
+      <td style="text-align: left">뒤쪽 끝</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aileron</td>
+      <td style="text-align: left">보조날개</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">air cushion</td>
+      <td style="text-align: left">공기쿠션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">air cushion vehicles</td>
+      <td style="text-align: left">공기부양정</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">air velocity</td>
+      <td style="text-align: left">공기속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aircraft</td>
+      <td style="text-align: left">비행기</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aircraft powering</td>
+      <td style="text-align: left">비행기 동력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">airfoil</td>
+      <td style="text-align: left">에어포일</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">alignment</td>
+      <td style="text-align: left">정렬</td>
+      <td style="text-align: left">비행기 착륙시에 활주로와 정렬하는것</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">altitude</td>
+      <td style="text-align: left">고도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ambient flow field</td>
+      <td style="text-align: left">주변 유동장</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Anaglyphs</td>
+      <td style="text-align: left">애너글리프</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angle</td>
+      <td style="text-align: left">각도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angluar motion</td>
+      <td style="text-align: left">각운동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular</td>
+      <td style="text-align: left">각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular displacement</td>
+      <td style="text-align: left">각변위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular distance</td>
+      <td style="text-align: left">각거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular equation of motion</td>
+      <td style="text-align: left">각운동 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular frequency</td>
+      <td style="text-align: left">각 주파수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">angular velocity</td>
+      <td style="text-align: left">각속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">anisotropic</td>
+      <td style="text-align: left">이방성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">apparent wind</td>
+      <td style="text-align: left">겉보기 바람</td>
+      <td style="text-align: left">자세한 설명은 역주로 달았음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">appendage</td>
+      <td style="text-align: left">부착물</td>
+      <td style="text-align: left">비행기에 붙이는 것들… 연료 포드, 미사일, 폭탄 등등</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">approximate</td>
+      <td style="text-align: left">~의 근사값을 구하다, 근사적으로 구하다, 근사를 구하다</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">arc</td>
+      <td style="text-align: left">원호</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">arctangent</td>
+      <td style="text-align: left">아크탄젠트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">array</td>
+      <td style="text-align: left">배열</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">aspect ratio</td>
+      <td style="text-align: left">(비행기 날개의)가로세로비</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">atmospheric pressure</td>
+      <td style="text-align: left">기압</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">attachment point</td>
+      <td style="text-align: left">끝점</td>
+      <td style="text-align: left">내용상 끝점(end point)을 나타내니까 굳이 부착점이라고 다른 용어 사용하지 않겠습니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">attack angle</td>
+      <td style="text-align: left">접근각</td>
+      <td style="text-align: left">비행기 날개 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">attitude</td>
+      <td style="text-align: left">(비행기의)자세</td>
+      <td style="text-align: left">수평선과 비교한 비행기의 각도(pitch 회전)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">attraction / force of attraction</td>
+      <td style="text-align: left">인력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">avionics system</td>
+      <td style="text-align: left">항공전자시스템</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">azimuth thruster</td>
+      <td style="text-align: left">아지무스 스러스터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ballistic coefficient</td>
+      <td style="text-align: left">탄도 계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bank</td>
+      <td style="text-align: left">뱅크</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">barometers</td>
+      <td style="text-align: left">기압계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">baseline</td>
+      <td style="text-align: left">기선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Bernoulli’s equation</td>
+      <td style="text-align: left">베르누이의 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">binaural recording</td>
+      <td style="text-align: left">바이노럴 레코딩</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">binocular disparity</td>
+      <td style="text-align: left">양안시차</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">binocular rivalry</td>
+      <td style="text-align: left">양안 경합</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">binocular vision</td>
+      <td style="text-align: left">양안 비전</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">biomechanics</td>
+      <td style="text-align: left">생체역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bird’s-eye view</td>
+      <td style="text-align: left">조감도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">body-fixed coordiantes</td>
+      <td style="text-align: left">로컬좌표</td>
+      <td style="text-align: left">물체에 고정된 좌표라 = 물체를 원점으로 삼는 좌표 = 로컬좌표</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">boundary layer</td>
+      <td style="text-align: left">경계층</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bounding box collision detection (method)</td>
+      <td style="text-align: left">바운딩박스 충돌검출(법)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bounding circle</td>
+      <td style="text-align: left">바운딩 서클</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bow</td>
+      <td style="text-align: left">선수</td>
+      <td style="text-align: left">선박용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bow thruster</td>
+      <td style="text-align: left">바우 스러스터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bullet</td>
+      <td style="text-align: left">총알</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">buoyancy</td>
+      <td style="text-align: left">부력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">bus bar</td>
+      <td style="text-align: left">부스바</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cache</td>
+      <td style="text-align: left">캐시</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">calibration</td>
+      <td style="text-align: left">칼리브레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">camber</td>
+      <td style="text-align: left">캠버</td>
+      <td style="text-align: left">비행기 날개 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">camber airfoil</td>
+      <td style="text-align: left">캠버 에어포일</td>
+      <td style="text-align: left">앞에가 볼록한(캠버가 달린) 에어포일</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">camber line</td>
+      <td style="text-align: left">캠버선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cantilever</td>
+      <td style="text-align: left">캔틸레버</td>
+      <td style="text-align: left">역주도 달았음. 긴 막대를 한쪽만 고정하고 다른쪽은 다이빙대처럼 움직이게 둔 놈임</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Capacitive</td>
+      <td style="text-align: left">정전용량방식</td>
+      <td style="text-align: left">터치스크린 종류</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">capacitor</td>
+      <td style="text-align: left">축전기</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Cartesian coordinates</td>
+      <td style="text-align: left">직교좌표</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cavitation</td>
+      <td style="text-align: left">공동현상</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">center of gravity</td>
+      <td style="text-align: left">무게중심</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">center of mass</td>
+      <td style="text-align: left">질량중심</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">center of percussion</td>
+      <td style="text-align: left">타격중심</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">centerline</td>
+      <td style="text-align: left">중심선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">central collsion</td>
+      <td style="text-align: left">중심충돌</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">centrifugal acceleration</td>
+      <td style="text-align: left">원심가속력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">centripetal acceleration</td>
+      <td style="text-align: left">구심가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">centripetal force</td>
+      <td style="text-align: left">구심력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">centroid</td>
+      <td style="text-align: left">(도형의) 중심</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">characteristic area</td>
+      <td style="text-align: left">특성면적</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">characteristic length</td>
+      <td style="text-align: left">특성길이</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">charged particle</td>
+      <td style="text-align: left">전하를 띠는 입자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">chord length</td>
+      <td style="text-align: left">시위길이</td>
+      <td style="text-align: left">비행기 날개에서 짧은 변</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">circular frequency</td>
+      <td style="text-align: left">원 주파수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">classic mechanics</td>
+      <td style="text-align: left">고전물리학, 고전역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">closed-form equations</td>
+      <td style="text-align: left">닫힌 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">closed-form solution</td>
+      <td style="text-align: left">닫힌 해법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cloth simulation</td>
+      <td style="text-align: left">클로스 시뮬레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coefficient of friction</td>
+      <td style="text-align: left">마찰계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coefficient of kinetic friction</td>
+      <td style="text-align: left">운동마찰계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coefficient of restitution</td>
+      <td style="text-align: left">반발계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coefficient of static friction</td>
+      <td style="text-align: left">정지마찰계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">collision detection</td>
+      <td style="text-align: left">충돌검출</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">collision force</td>
+      <td style="text-align: left">충돌력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">collision response</td>
+      <td style="text-align: left">충돌반응</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">combatant ship</td>
+      <td style="text-align: left">전투함</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">combined center of mass</td>
+      <td style="text-align: left">최종무게중심</td>
+      <td style="text-align: left">점질량의 무게중심을 다 더해서 얻는 최종무게중심 (다른 마땅한 용어가 없어 최종으로 가고 문장중에 자연스레 설명함)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">compass bearing</td>
+      <td style="text-align: left">나침방위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">complex space</td>
+      <td style="text-align: left">복소공간</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">computational fluid dynamics</td>
+      <td style="text-align: left">전산유체역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">condensation</td>
+      <td style="text-align: left">응축</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">conjugate of the quaternion</td>
+      <td style="text-align: left">켤레 쿼터니언</td>
+      <td style="text-align: left">켤레 쿼터니언을 구글에 검색해봐도 딱히 많이 나오는게 아닙니다만, 복소수에서 켤레라는 말은(켤레 복소수) 흔히 쓰이므로, 복소공간에서 켤레 쿼터니언이라는 용어를 쉽게 이해할 수 있을 것이라 판단됩니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">connected rigidbody</td>
+      <td style="text-align: left">연결된 리지드바디</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">connector</td>
+      <td style="text-align: left">커넥터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">constant acceleration</td>
+      <td style="text-align: left">등가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">constraint</td>
+      <td style="text-align: left">제약(조건)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">contact forces</td>
+      <td style="text-align: left">접촉력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">contact manifold</td>
+      <td style="text-align: left">접촉 다양체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">continuous collision detection</td>
+      <td style="text-align: left">연속 충돌검출</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">continuum mechanics</td>
+      <td style="text-align: left">연속체 역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">contra-rotating propeller</td>
+      <td style="text-align: left">이중반전 프로펠러</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">controls surfaces</td>
+      <td style="text-align: left">풀어씁니다</td>
+      <td style="text-align: left">플랩, 보조날개 등 비행기를 조종하는 표면들을 의미.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">converge</td>
+      <td style="text-align: left">수렴하다</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">convergence distance</td>
+      <td style="text-align: left">일치거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cord line</td>
+      <td style="text-align: left">시위선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">counter</td>
+      <td style="text-align: left">카운터</td>
+      <td style="text-align: left">카운트 세는 변수 이런거 말할 때.. 풀어쓸수 있음 풀어쓰고</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">coupled motion</td>
+      <td style="text-align: left">짝운동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">critical attack angle</td>
+      <td style="text-align: left">임계 접근각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">critical point</td>
+      <td style="text-align: left">임계점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">critical reynold's number</td>
+      <td style="text-align: left">임계 레이놀즈 수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cross product</td>
+      <td style="text-align: left">외적</td>
+      <td style="text-align: left">벡터곱과 같음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cross track error</td>
+      <td style="text-align: left">경로이탈오차</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cube</td>
+      <td style="text-align: left">정육면체, 큐브</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cue sport</td>
+      <td style="text-align: left">큐스포츠</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">curvature</td>
+      <td style="text-align: left">곡률</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cylinder</td>
+      <td style="text-align: left">원기둥</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">damper</td>
+      <td style="text-align: left">댐퍼</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">damping constant</td>
+      <td style="text-align: left">감쇠상수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">damping force</td>
+      <td style="text-align: left">감쇠력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">default</td>
+      <td style="text-align: left">디폴트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">degree</td>
+      <td style="text-align: left">도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">derivative</td>
+      <td style="text-align: left">미분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">derived unit</td>
+      <td style="text-align: left">유도(측정)단위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">design condition</td>
+      <td style="text-align: left">설계조건</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">design coordinates</td>
+      <td style="text-align: left">설계좌표</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">destroyer</td>
+      <td style="text-align: left">구축함</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dihedral angle</td>
+      <td style="text-align: left">이면각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dimension</td>
+      <td style="text-align: left">기본(측정)단위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dimensionless number</td>
+      <td style="text-align: left">무단위 수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">direcitonal stability</td>
+      <td style="text-align: left">방향안정성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">direct collision</td>
+      <td style="text-align: left">정면충돌</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">direction cosines</td>
+      <td style="text-align: left">방향 코사인</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">disparity map</td>
+      <td style="text-align: left">시차맵</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Dispersive Signal</td>
+      <td style="text-align: left">진동파 신호 방식</td>
+      <td style="text-align: left">터치스크린 종류</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">displacement</td>
+      <td style="text-align: left">변위, 위치변화(설명중에 나올때)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">displacement vector</td>
+      <td style="text-align: left">변위 벡터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">displacement vessel</td>
+      <td style="text-align: left">배수형 선박</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Doppler Effect</td>
+      <td style="text-align: left">도플러 효과</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dot product</td>
+      <td style="text-align: left">내적</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">downforce</td>
+      <td style="text-align: left">다운포스</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">downrange</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">책에서 조차 제대로 원래 의미 이외의 것으로 자꾸 섞어써서 다 풀어쓰겠습니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">draft</td>
+      <td style="text-align: left">흘수</td>
+      <td style="text-align: left">선박용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">drag</td>
+      <td style="text-align: left">저항</td>
+      <td style="text-align: left">항력이 맞는 문맥도 있을듯. 공기저항 등으로 쓰더라도 역자주는 달죠</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">drag coefficient</td>
+      <td style="text-align: left">저항계수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">drag forces</td>
+      <td style="text-align: left">저항력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">draw</td>
+      <td style="text-align: left">드로우 샷</td>
+      <td style="text-align: left">골프용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">driven double pendulum</td>
+      <td style="text-align: left">구동 이중진자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dynamical system</td>
+      <td style="text-align: left">동적시스템</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">earth-fixed coordinates</td>
+      <td style="text-align: left">월드좌표(계), 월드공간</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">effect</td>
+      <td style="text-align: left">이펙트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">effective range</td>
+      <td style="text-align: left">유효 사거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">electric potential</td>
+      <td style="text-align: left">전위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">electrical resistance</td>
+      <td style="text-align: left">전기저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">electromagnetic attraction</td>
+      <td style="text-align: left">전자기인력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">electromagnetic radiation</td>
+      <td style="text-align: left">전자기파</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">electronic strain gauges</td>
+      <td style="text-align: left">전자식 변형계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">elemental mass</td>
+      <td style="text-align: left">원소질량</td>
+      <td style="text-align: left">점질량과 동의어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">elevator</td>
+      <td style="text-align: left">승강타</td>
+      <td style="text-align: left">비행기를 상승시키거나 하강시킬 때 사용되는 꼬리 날개의 부품</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">empirical</td>
+      <td style="text-align: left">실험/관찰을 통해 측정한(찾아낸)</td>
+      <td style="text-align: left">풀어씁시다. 경험적은 말이 안되는거 같아요. 실험을 통해 찾아낸 건데…관찰이나</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">engineering strain</td>
+      <td style="text-align: left">공칭변형률</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">equations of motion</td>
+      <td style="text-align: left">운동 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">estimate</td>
+      <td style="text-align: left">추산</td>
+      <td style="text-align: left">산정이라는 단어는 모든 값을 더해서 계산하는건데.. 추정은 반드시 올바르진 않은 사실을 모아서 결론을 내는거니.. 저희처럼 파티클을 나눠서 그걸 더해서 근사값 구하는 방식은 추산이 맞는거 같아요</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Euler angle</td>
+      <td style="text-align: left">오일러 각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Euler integration</td>
+      <td style="text-align: left">오일러 적분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Euler's method</td>
+      <td style="text-align: left">오일러 기법</td>
+      <td style="text-align: left">Euler Scheme</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">experimental</td>
+      <td style="text-align: left">실험/관찰을 통해 측정한(찾아낸)</td>
+      <td style="text-align: left">풀어씁시다. 경험적은 말이 안되는거 같아요. 실험을 통해 찾아낸 건데…관찰이나</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">explicitly</td>
+      <td style="text-align: left">(미분방정식을) 명시적하게 (푼다), 명시적(적분)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">external ballistics</td>
+      <td style="text-align: left">외부 탄도학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">external force</td>
+      <td style="text-align: left">외부힘</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">extrapolate</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">풀어씁시다. 보간인데 보간의 범위 밖으로 보간하는것.. 외보법이라고도 하는데.. 거의 외계어니 -_-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fade out</td>
+      <td style="text-align: left">페이드아웃</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">far zero</td>
+      <td style="text-align: left">원거리 영점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">feet per sec</td>
+      <td style="text-align: left">ft/s</td>
+      <td style="text-align: left">번역하지 말고 지우죠. 미터로 바꾸던가</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">field forces</td>
+      <td style="text-align: left">역장</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Finite Differentiation</td>
+      <td style="text-align: left">유한차분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">first approximation</td>
+      <td style="text-align: left">1차근사</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">first moment</td>
+      <td style="text-align: left">1차모멘트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flag</td>
+      <td style="text-align: left">플래그</td>
+      <td style="text-align: left">boolean 이야기 할 때</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flap</td>
+      <td style="text-align: left">플랩</td>
+      <td style="text-align: left">비행기 부품</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flexible conductor</td>
+      <td style="text-align: left">유연한 전도체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flight model</td>
+      <td style="text-align: left">비행모델</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flight simulator</td>
+      <td style="text-align: left">플라이트 시뮬레이터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flight stick</td>
+      <td style="text-align: left">조종스틱</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">flow</td>
+      <td style="text-align: left">흐름, 유동</td>
+      <td style="text-align: left">유동은 유동장이란 용어를 어쩔수 없이 써야해서 딱 한번 병기 했음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fluid</td>
+      <td style="text-align: left">유체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Fluid Dynamic Drag</td>
+      <td style="text-align: left">유체저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">force acting on a body</td>
+      <td style="text-align: left">물체가 받(고 있)는 힘</td>
+      <td style="text-align: left">가해지는 힘, 작용하는 힘이란 표현도 틀린건 아니나 받는 힘이 가장 한국말에서 자연스러우니 받는 힘으로 주로 가고 문장이 어색해지면 작용, 가해지는 도 씁시다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">force effector</td>
+      <td style="text-align: left">힘 이펙터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">force field</td>
+      <td style="text-align: left">역장</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fore</td>
+      <td style="text-align: left">앞쪽 끝</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">forward azimuth</td>
+      <td style="text-align: left">전방방위각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">free-body diagram</td>
+      <td style="text-align: left">자유물체도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">frequency</td>
+      <td style="text-align: left">빈도</td>
+      <td style="text-align: left">폴링 빈도 등</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">friction drag</td>
+      <td style="text-align: left">마찰저항,마찰력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">friction force</td>
+      <td style="text-align: left">마찰력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">frontal area</td>
+      <td style="text-align: left">전면 면적</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fuel pod</td>
+      <td style="text-align: left">연료 포드</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">function of time</td>
+      <td style="text-align: left">시간의 함수</td>
+      <td style="text-align: left">f(time) 처럼 time이 매개변수가 되서 결과를 얻는 함수를 뜻함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fuselage</td>
+      <td style="text-align: left">동체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Geocaching</td>
+      <td style="text-align: left">지오캐싱</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">geographic coordinate system</td>
+      <td style="text-align: left">지리좌표계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gesture</td>
+      <td style="text-align: left">제스처</td>
+      <td style="text-align: left">터치스크린</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">given value</td>
+      <td style="text-align: left">이미 알고 있는 값</td>
+      <td style="text-align: left">주어진 값은  잘못된 번역용어… for a given velocity -&gt; 이미 속도를 알고 있다면 정도로 번역하면 됩니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">global coordinate</td>
+      <td style="text-align: left">월드좌표</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">global positioning system</td>
+      <td style="text-align: left">위성위치확인시스템</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">global reference coordinate system</td>
+      <td style="text-align: left">월드좌표계</td>
+      <td style="text-align: left">reference가 쓰인건 이걸 기준으로 좌표를 표현한단 뜻일뿐</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">global variables</td>
+      <td style="text-align: left">전역 변수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gram</td>
+      <td style="text-align: left">그램</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gravitational acceleration</td>
+      <td style="text-align: left">중력 가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gravitational attraction</td>
+      <td style="text-align: left">만유인력</td>
+      <td style="text-align: left">그대로 번역하여 '중력끌림'이라는 용어로도 사용되는것 같습니다. 하지만 만유인력이랑 같은 얘기를 하는 것 같아 더 친숙한 용어인 만유인력이라는 용어로 번역하려합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gravitational constant</td>
+      <td style="text-align: left">중력상수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">gravitational field</td>
+      <td style="text-align: left">중력장</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">great circle</td>
+      <td style="text-align: left">대권</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Greenwich Observatory</td>
+      <td style="text-align: left">그리니치 천문대</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">guide intercontinental ballistic missiles</td>
+      <td style="text-align: left">대륙간탄도미사일</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Gyroscope</td>
+      <td style="text-align: left">자이로스코프</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Haptic Feedback</td>
+      <td style="text-align: left">햅틱피드백</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">haversine formula</td>
+      <td style="text-align: left">하버 사인공식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">head-related transfer functions</td>
+      <td style="text-align: left">머리전달함수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">heading</td>
+      <td style="text-align: left">선수방향</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">heave</td>
+      <td style="text-align: left">상하동요</td>
+      <td style="text-align: left">선박의 이동</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">high lift device</td>
+      <td style="text-align: left">고양력장치</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">high-pass filter</td>
+      <td style="text-align: left">고주파통과 필터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">higher-order term</td>
+      <td style="text-align: left">고차항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hinged joint</td>
+      <td style="text-align: left">힌지 조인트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Hooke’s law</td>
+      <td style="text-align: left">훅의 법칙</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">horsepower</td>
+      <td style="text-align: left">마력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Hovercraft</td>
+      <td style="text-align: left">호버크라프트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hull</td>
+      <td style="text-align: left">선체</td>
+      <td style="text-align: left">선박용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">human-input devices</td>
+      <td style="text-align: left">휴먼인터페이스장치(HID)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hump</td>
+      <td style="text-align: left">고비(영역)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hydrofoil</td>
+      <td style="text-align: left">수중익선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hydrostatic pressure</td>
+      <td style="text-align: left">수압</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">idealized</td>
+      <td style="text-align: left">이상화한, 이상화된, 이상화시킨</td>
+      <td style="text-align: left">이상적인게 아니라. 복잡한 변수들 다 빼고 계산하기에 편한 변수만 남긴 식..</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">impact velocity</td>
+      <td style="text-align: left">충돌 속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">improved Euler method</td>
+      <td style="text-align: left">계량된 오일러 기법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">impulse</td>
+      <td style="text-align: left">충격</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">impulse force</td>
+      <td style="text-align: left">충격력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inactivate</td>
+      <td style="text-align: left">끄다</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">incidence angle</td>
+      <td style="text-align: left">입사각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">induced drag</td>
+      <td style="text-align: left">유도저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inelastic collision</td>
+      <td style="text-align: left">비탄성 충돌</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inertia</td>
+      <td style="text-align: left">관성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inertial frame</td>
+      <td style="text-align: left">관성계 (=inertial system)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inertial frames of reference</td>
+      <td style="text-align: left">관성계</td>
+      <td style="text-align: left">관성기준좌표계라도 하는데 어차피 용어에서 뜻은 전달 안되니 간단히 갑니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Infrared</td>
+      <td style="text-align: left">적외선방식</td>
+      <td style="text-align: left">터치스크린 종류</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">initial condition</td>
+      <td style="text-align: left">초기조건</td>
+      <td style="text-align: left">수치적분에서 반드시 알아야 하는 초기값</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">instantaneous acceleration</td>
+      <td style="text-align: left">순간 가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">instantaneous velocity</td>
+      <td style="text-align: left">순간 속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">integral photography</td>
+      <td style="text-align: left">집적영상</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">integrator</td>
+      <td style="text-align: left">적분기</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">interaction force</td>
+      <td style="text-align: left">상호작용력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">interaural delay</td>
+      <td style="text-align: left">두 귀 사이의 딜레이</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Internal ballistics</td>
+      <td style="text-align: left">내부 탄도학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">internal combustion engine</td>
+      <td style="text-align: left">내연기관</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inverse cosine</td>
+      <td style="text-align: left">아크코사인</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">inverse sine</td>
+      <td style="text-align: left">아크사인</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">isotropic</td>
+      <td style="text-align: left">등방성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">jet</td>
+      <td style="text-align: left">공기 제트</td>
+      <td style="text-align: left">호버크라프트</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">joint</td>
+      <td style="text-align: left">조인트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinematic differential equation of motion</td>
+      <td style="text-align: left">키네마틱 미분 운동방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinematic equation</td>
+      <td style="text-align: left">키네마틱 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinematic property</td>
+      <td style="text-align: left">운동학적 특성, 키네마틱 특성</td>
+      <td style="text-align: left">역자주로 달고 공용하기로 했습니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinematic property vectors</td>
+      <td style="text-align: left">키네마틱 특성 벡터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Kinematic viscosity</td>
+      <td style="text-align: left">동점도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinematics</td>
+      <td style="text-align: left">운동학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinetic energy</td>
+      <td style="text-align: left">운동 에너지</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kinetics</td>
+      <td style="text-align: left">동역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">knob</td>
+      <td style="text-align: left">노브</td>
+      <td style="text-align: left">한번 노브라고 하고 그뒤부터는 조절기 식으로 풀어썼습니다. 총 옆에 달린 돌리는 손잡이임</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">kutta condition</td>
+      <td style="text-align: left">쿠타 조건</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Kutta-Joukowski theorem</td>
+      <td style="text-align: left">쿠타-쥬코스키 정리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">laminar</td>
+      <td style="text-align: left">층류</td>
+      <td style="text-align: left">난류의 반댓말</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">landing flap</td>
+      <td style="text-align: left">착륙용 플랩</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">latitude</td>
+      <td style="text-align: left">위도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">leading edge</td>
+      <td style="text-align: left">앞전</td>
+      <td style="text-align: left">비행기 날개 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lenticular lenses</td>
+      <td style="text-align: left">렌티큘라렌즈</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lift</td>
+      <td style="text-align: left">양력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lifting surface</td>
+      <td style="text-align: left">양력표면</td>
+      <td style="text-align: left">물체를 들어올리는 표면 = 양력을 발생하는 표면 = 양력표면</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">limit</td>
+      <td style="text-align: left">극한, 극한 값, 리미트(수학 표기를 말할땐)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear</td>
+      <td style="text-align: left">선형</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear acceleration</td>
+      <td style="text-align: left">선가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear displacement</td>
+      <td style="text-align: left">선형 변위</td>
+      <td style="text-align: left">역자주 달아요 한번은 위치변화를 의미한다고</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear equation of motion</td>
+      <td style="text-align: left">선운동 방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear motion</td>
+      <td style="text-align: left">선운동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">linear velocity</td>
+      <td style="text-align: left">선속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">link</td>
+      <td style="text-align: left">고리</td>
+      <td style="text-align: left">리지드비다 연결할때 나오는 고리이야기. 다른 문맥에선 바뀔지도</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">load cells</td>
+      <td style="text-align: left">로드셀</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">loads</td>
+      <td style="text-align: left">하중/부하/받는 힘/…</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">local coordinate system</td>
+      <td style="text-align: left">로컬좌표계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">local coordinates</td>
+      <td style="text-align: left">로컬좌표</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">local variable</td>
+      <td style="text-align: left">지역변수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">locality</td>
+      <td style="text-align: left">국소성</td>
+      <td style="text-align: left">일단 책에는 국소성에 대한 부연 설명이 붙어 있음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">logbook</td>
+      <td style="text-align: left">로그북</td>
+      <td style="text-align: left">지오캐싱에서 사용하는 로그북</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">longitude</td>
+      <td style="text-align: left">경도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">longitudinal axis</td>
+      <td style="text-align: left">세로축</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">longitudinal wave</td>
+      <td style="text-align: left">종파</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">loop</td>
+      <td style="text-align: left">반복문</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">lorentz factor</td>
+      <td style="text-align: left">로렌츠 인자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">low-pass filter</td>
+      <td style="text-align: left">저주파통과 필터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">macro-scale</td>
+      <td style="text-align: left">거시적 규모</td>
+      <td style="text-align: left">눈으로 볼수 있을 정도로 큰 것</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">magnus effect</td>
+      <td style="text-align: left">마그누스 효과</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">main window</td>
+      <td style="text-align: left">메인 윈도우</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mass density</td>
+      <td style="text-align: left">질량밀도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mass flow rate</td>
+      <td style="text-align: left">질량유속</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mass moment of inertia</td>
+      <td style="text-align: left">질량관성 모멘트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">matrix transforms</td>
+      <td style="text-align: left">행렬변환</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">maximum static friction force</td>
+      <td style="text-align: left">최대 정지마찰력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">measure</td>
+      <td style="text-align: left">측정, 측량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mechanical properties</td>
+      <td style="text-align: left">기계적 특성</td>
+      <td style="text-align: left">(전선의) 기계적 특성</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mercator projection</td>
+      <td style="text-align: left">메르카토르 도법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">meridian</td>
+      <td style="text-align: left">자오선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">metacenter</td>
+      <td style="text-align: left">경심</td>
+      <td style="text-align: left">선박용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">meter per sec</td>
+      <td style="text-align: left">m/s</td>
+      <td style="text-align: left">첨에만 한번 "초당 미터"를 뜻하는 식으로 풀어써주고 그뒤론 부호로 씁니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">method</td>
+      <td style="text-align: left">메소드</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">metric system</td>
+      <td style="text-align: left">미터법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">micro-scale</td>
+      <td style="text-align: left">미시적 규모</td>
+      <td style="text-align: left">눈으로 보지 못할 정도로 작은 것</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">microelectromechanical system, MEMS</td>
+      <td style="text-align: left">미세전자기계 시스템</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">model</td>
+      <td style="text-align: left">시뮬레이션(동사), 물리모델(명사)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">moment of inertia</td>
+      <td style="text-align: left">관성모멘트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">moment of inertia tensor</td>
+      <td style="text-align: left">관성모멘트 텐서</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">momentum</td>
+      <td style="text-align: left">운동량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">multi-body simulation</td>
+      <td style="text-align: left">다물체 시뮬레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mutator</td>
+      <td style="text-align: left">변경자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mutual-Capacitance</td>
+      <td style="text-align: left">상호정전용량</td>
+      <td style="text-align: left">터치스크린</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">muzzle velocity</td>
+      <td style="text-align: left">총구속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">natural logarithm</td>
+      <td style="text-align: left">자연로그</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">natural vibration</td>
+      <td style="text-align: left">고유진동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">near zero</td>
+      <td style="text-align: left">근거리 영점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">negative image</td>
+      <td style="text-align: left">네거티브 이미지</td>
+      <td style="text-align: left">물체인식 학습 알고리즘 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">net external force</td>
+      <td style="text-align: left">알짜 외부힘</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">net force</td>
+      <td style="text-align: left">알짜힘</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Newton’s law of gravitation</td>
+      <td style="text-align: left">뉴턴의 만유인력의 법칙</td>
+      <td style="text-align: left">뉴턴의 중력법칙이라고 번역하기도 하는 것 같은데, 같은 내용을 얘기하고 더 친숙한 용어인 '뉴턴의 만유인력의 법칙'이라고 번역하려 합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Newtonian mechanics</td>
+      <td style="text-align: left">뉴턴 역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Nonconstant Acceleration</td>
+      <td style="text-align: left">가변가속도</td>
+      <td style="text-align: left">"등가속도가 아닌 가속도" 정도로 역주도 넣고</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">noninertial frame of reference</td>
+      <td style="text-align: left">비관성계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">normal</td>
+      <td style="text-align: left">법선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">normal distribution</td>
+      <td style="text-align: left">정규분표</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">normal force</td>
+      <td style="text-align: left">수직력, 법선력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Numerical Differentiation</td>
+      <td style="text-align: left">수치미분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">numerical instabilities</td>
+      <td style="text-align: left">수치불안정성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">numerical integration</td>
+      <td style="text-align: left">수치적분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">numerical simulations</td>
+      <td style="text-align: left">수치시뮬레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">numerical stability</td>
+      <td style="text-align: left">수치안전성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">oblique collision</td>
+      <td style="text-align: left">경사충돌</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">oil tanker</td>
+      <td style="text-align: left">유조선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">optical imaging</td>
+      <td style="text-align: left">광학영상 기법</td>
+      <td style="text-align: left">터치스크린 종류</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">order of</td>
+      <td style="text-align: left">O()</td>
+      <td style="text-align: left">이정도의 오차라고 할 때 나오는데 마땅한 번역어가 없으니 그냥 O노테이션 씁니다</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ordinary differential equations</td>
+      <td style="text-align: left">상미분방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">orientation</td>
+      <td style="text-align: left">방향</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">orientation angle</td>
+      <td style="text-align: left">방향각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">oscillating</td>
+      <td style="text-align: left">진동운동을 하는</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parallax</td>
+      <td style="text-align: left">시차</td>
+      <td style="text-align: left">위치나 방향의 차이를 의미합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parallax barrier</td>
+      <td style="text-align: left">시차 배리어</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parameter</td>
+      <td style="text-align: left">매개변수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">particle</td>
+      <td style="text-align: left">파티클, 입자</td>
+      <td style="text-align: left">물체를 구성할 땐 입자.. 파티클 효과할땐 파티클</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Particle Kinematics</td>
+      <td style="text-align: left">파티클 운동학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">particle motion</td>
+      <td style="text-align: left">파티클 운동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pattern recognition</td>
+      <td style="text-align: left">패턴인식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">penalty method</td>
+      <td style="text-align: left">페널티 기반 기법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">perpendicular</td>
+      <td style="text-align: left">수직으로 만나는, 직교하는</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">perpendicular distance</td>
+      <td style="text-align: left">(두 점 사이의) 수직거리, 최단거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">photon</td>
+      <td style="text-align: left">광자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">physical quantity</td>
+      <td style="text-align: left">물리량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">piezoresistive strain gauge</td>
+      <td style="text-align: left">압저항형 변형계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">piezoresistor</td>
+      <td style="text-align: left">압저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pilot</td>
+      <td style="text-align: left">파일럿</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pinned joint</td>
+      <td style="text-align: left">핀 조인트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pitch</td>
+      <td style="text-align: left">피치</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plan</td>
+      <td style="text-align: left">평면도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plane kinematics</td>
+      <td style="text-align: left">평면 운동학, 2차원 운동학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">planform area</td>
+      <td style="text-align: left">평면투영면적</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">planing vessel</td>
+      <td style="text-align: left">활주형 선박</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plastic collision</td>
+      <td style="text-align: left">변형 충돌</td>
+      <td style="text-align: left">충돌시에 주물에서 플라스틱을 찍어내듯이 영구변형을 일으킨단 의미.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">plenum chamber</td>
+      <td style="text-align: left">고압실</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">point mass</td>
+      <td style="text-align: left">점질량</td>
+      <td style="text-align: left">원소질량과 동의어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">point-blank weapon</td>
+      <td style="text-align: left">직사화기</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pointblank range</td>
+      <td style="text-align: left">영거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">poll</td>
+      <td style="text-align: left">(키보드) 폴링</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">polling rate</td>
+      <td style="text-align: left">폴링 속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">polyhedron</td>
+      <td style="text-align: left">다면체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">polynomial approximation</td>
+      <td style="text-align: left">다항식 근사</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">port</td>
+      <td style="text-align: left">좌현</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">positive image</td>
+      <td style="text-align: left">포지티브 이미지</td>
+      <td style="text-align: left">물체인식 학습 알고리즘 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pressure</td>
+      <td style="text-align: left">압력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pressure sensors</td>
+      <td style="text-align: left">압력센서</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pressure-sensitive</td>
+      <td style="text-align: left">감압식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">prime meridian</td>
+      <td style="text-align: left">본초 자오선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">principal axis</td>
+      <td style="text-align: left">주축</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">product of inertia</td>
+      <td style="text-align: left">관성곱</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">profile</td>
+      <td style="text-align: left">측면도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">profile (side) view</td>
+      <td style="text-align: left">측면도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">projected frontal area</td>
+      <td style="text-align: left">투영전면면적</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">projectile motion</td>
+      <td style="text-align: left">포물선 운동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">properties of a body</td>
+      <td style="text-align: left">물체의 특성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">property</td>
+      <td style="text-align: left">특성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pseudocode</td>
+      <td style="text-align: left">의사코드</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pseudoranges</td>
+      <td style="text-align: left">의사거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pullup</td>
+      <td style="text-align: left">풀업저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">push button</td>
+      <td style="text-align: left">꾹꾹이 버튼</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">quantum tunneling</td>
+      <td style="text-align: left">양자터널링</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">quarter-chord point</td>
+      <td style="text-align: left">1/4 시위점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">quartz crystal</td>
+      <td style="text-align: left">수정 진동자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">quaternions</td>
+      <td style="text-align: left">쿼터니언</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">radians</td>
+      <td style="text-align: left">라디안</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ragdoll</td>
+      <td style="text-align: left">랙돌</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">randomly/random</td>
+      <td style="text-align: left">랜덤으로/랜덤/랜덤하게</td>
+      <td style="text-align: left">이런 것들에 대해서 랜덤'어쩌고' 같은 식으로 표현하려고 합니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rarefaction</td>
+      <td style="text-align: left">희박</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">raw data</td>
+      <td style="text-align: left">미가공데이터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">recoil</td>
+      <td style="text-align: left">반동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rectangular cylinder</td>
+      <td style="text-align: left">사각기둥, 직육면체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">relative velocity</td>
+      <td style="text-align: left">상대속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">relativistic time</td>
+      <td style="text-align: left">상대론적 시간</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">residual resistance</td>
+      <td style="text-align: left">잉여저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">resistive</td>
+      <td style="text-align: left">저항막방식</td>
+      <td style="text-align: left">터치스크린 종류</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rest length</td>
+      <td style="text-align: left">원래길이</td>
+      <td style="text-align: left">스프링을 건들지 않았을때의 힘 (휴지길이란 용얼 쓸순 없자녀? -_-)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">resultant 'something' (ex: resultant velocity)</td>
+      <td style="text-align: left">합 속도</td>
+      <td style="text-align: left">합속도/합가속도/합력 등으로 갑시다. 아무리 찾아도 다른 단어가 없네요</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">resultant force</td>
+      <td style="text-align: left">합력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reynolds number</td>
+      <td style="text-align: left">레이놀즈 수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rhumb line</td>
+      <td style="text-align: left">항정선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">right hand rule</td>
+      <td style="text-align: left">오른손법칙</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rigid body</td>
+      <td style="text-align: left">리지드바디</td>
+      <td style="text-align: left">강체라고 주석한번 달아주죠</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rigid body simulation</td>
+      <td style="text-align: left">리지드바디 시뮬레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rigid-body dynamics</td>
+      <td style="text-align: left">리지드바디 동역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rigorous</td>
+      <td style="text-align: left">정밀한</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rivet</td>
+      <td style="text-align: left">리벳</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Robins effect</td>
+      <td style="text-align: left">로빈스 효과</td>
+      <td style="text-align: left">원서에 오타있음 (Robbins라고..)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">robust</td>
+      <td style="text-align: left">안정적인, 오차가 적은</td>
+      <td style="text-align: left">more robust technique할 때.. 오차가 적은 기법, 버그가 적은 기법 등</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">roll</td>
+      <td style="text-align: left">롤</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rolling resistance</td>
+      <td style="text-align: left">회전저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rotation matrices</td>
+      <td style="text-align: left">회전행렬</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rotational acceleration</td>
+      <td style="text-align: left">회전가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rotational degree of freedom</td>
+      <td style="text-align: left">회전자유도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rotational inertia</td>
+      <td style="text-align: left">회전관성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">round</td>
+      <td style="text-align: left">총탄</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rudder</td>
+      <td style="text-align: left">(항공기의)방향타, (선박의)키</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Runge-Kutta method</td>
+      <td style="text-align: left">룽게-쿠타 기법</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">scale-model</td>
+      <td style="text-align: left">축소모형</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">second moment</td>
+      <td style="text-align: left">2차 모멘트</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">second-rank tensor</td>
+      <td style="text-align: left">2차 텐서</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Self-Capacitance</td>
+      <td style="text-align: left">자체정전용량</td>
+      <td style="text-align: left">터치스크린</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">semi-displacement vessel</td>
+      <td style="text-align: left">반배수형 선박</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">separation point</td>
+      <td style="text-align: left">분리점</td>
+      <td style="text-align: left">유체역학에선 박리점이라고 한다고 역주 담</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">shafted CPP propellers</td>
+      <td style="text-align: left">샤프트 가변피치 프로펠러</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">shafted fixed-pitch propellers</td>
+      <td style="text-align: left">샤프트 고정피치 프로펠러</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">shear forces</td>
+      <td style="text-align: left">전단력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">shear stress</td>
+      <td style="text-align: left">전단응력</td>
+      <td style="text-align: left">더이상 나은 언어가 없어서 유체역학 용어를 그대로 씀</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sidebar</td>
+      <td style="text-align: left">글상자</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">simple shapes</td>
+      <td style="text-align: left">기초도형</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">simulator</td>
+      <td style="text-align: left">시뮬레이터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">single-body simulation</td>
+      <td style="text-align: left">단일물체 시뮬레이션</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">skew symmetric matrix</td>
+      <td style="text-align: left">반대칭행렬</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">skin friction</td>
+      <td style="text-align: left">표면마찰</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">slag</td>
+      <td style="text-align: left">슬래그</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">slice</td>
+      <td style="text-align: left">슬라이스 샷</td>
+      <td style="text-align: left">골프용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">smoothing function</td>
+      <td style="text-align: left">스무딩 함수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">soft body</td>
+      <td style="text-align: left">소프트바디</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">solid conductor</td>
+      <td style="text-align: left">휘지 않는 전도체</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">solver</td>
+      <td style="text-align: left">솔버</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sound waves</td>
+      <td style="text-align: left">음파</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">span</td>
+      <td style="text-align: left">날개길이</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">specific weight</td>
+      <td style="text-align: left">비중량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">speed</td>
+      <td style="text-align: left">속력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">spherical law of cosines</td>
+      <td style="text-align: left">구면코사인법칙</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">spring constant</td>
+      <td style="text-align: left">스프링상수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">spring force</td>
+      <td style="text-align: left">스프링력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stability</td>
+      <td style="text-align: left">(선박의)복원성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stagnation point</td>
+      <td style="text-align: left">정체점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stall</td>
+      <td style="text-align: left">스톨</td>
+      <td style="text-align: left">비행기가 속도를 잃어 더이상 양력을 생산하지 못하는 상황. 속도를 잃는단 의미로 '실속'이란 번역어가 있으나 별로임. 그냥 역자주로 달겠음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">starboard</td>
+      <td style="text-align: left">우현</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">static equilibrium</td>
+      <td style="text-align: left">정적평형</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">steering</td>
+      <td style="text-align: left">스티어링</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stereoization</td>
+      <td style="text-align: left">스테레오스코픽화</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stereopsis</td>
+      <td style="text-align: left">스테레오스코픽 깊이지각</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stereoscopic displays</td>
+      <td style="text-align: left">스테레오스코픽 디스플레이</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stereoscopy</td>
+      <td style="text-align: left">스테레오스코픽영상</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stern</td>
+      <td style="text-align: left">선미</td>
+      <td style="text-align: left">선박용어</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stopping distance</td>
+      <td style="text-align: left">제동거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">straight wing</td>
+      <td style="text-align: left">직선날개</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">strain energy</td>
+      <td style="text-align: left">변형 에너지</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">strain gauge</td>
+      <td style="text-align: left">변형계</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">streamlined</td>
+      <td style="text-align: left">유선형</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">street games</td>
+      <td style="text-align: left">증강현실 게임</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">stretched or compressed length</td>
+      <td style="text-align: left">현재길이</td>
+      <td style="text-align: left">스프링 이야기 나올 때… 현재 상태에서 늘어날수도 압축될수도 있단 이야긴데 어차피 현재길이란 뜻</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">structural element</td>
+      <td style="text-align: left">구조요소</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">superelevation</td>
+      <td style="text-align: left">경사면</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Surface Acoustic</td>
+      <td style="text-align: left">표면음파 방식</td>
+      <td style="text-align: left">터치스크린 종류 ㅇㄹ: 검색해보니 초음파 방식 이라고 부르는 사람들들도 더러 보입니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">surge</td>
+      <td style="text-align: left">전후동요</td>
+      <td style="text-align: left">선박의 이동</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sway</td>
+      <td style="text-align: left">좌우동요</td>
+      <td style="text-align: left">선박의 이동</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">symbol</td>
+      <td style="text-align: left">기호</td>
+      <td style="text-align: left">M(중력) A(가속도) 등</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">system of nonlinear differential equations</td>
+      <td style="text-align: left">비선형 연립미분방정식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tail fin</td>
+      <td style="text-align: left">꼬리날개</td>
+      <td style="text-align: left">비행기 뒤쪽의 수직으로 서 있는 것</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tangent</td>
+      <td style="text-align: left">접선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tangential acceleration</td>
+      <td style="text-align: left">접선가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tangential linear acceleration</td>
+      <td style="text-align: left">접선 선가속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tangential velocity</td>
+      <td style="text-align: left">접선속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tangential velocity</td>
+      <td style="text-align: left">접선속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Taylor series</td>
+      <td style="text-align: left">테일러 급수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Taylor series expansion</td>
+      <td style="text-align: left">테일러 급수 전개</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tensor</td>
+      <td style="text-align: left">텐서</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">term</td>
+      <td style="text-align: left">항(수학식 인 경우에만)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">terminal ballistics</td>
+      <td style="text-align: left">최종 탄도학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">terminal velocity</td>
+      <td style="text-align: left">종단속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">the global origin</td>
+      <td style="text-align: left">(월드공간) 원점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thermodynamics</td>
+      <td style="text-align: left">열역학</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">throttle steering</td>
+      <td style="text-align: left">스로틀 스티어링</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thrust</td>
+      <td style="text-align: left">추진력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thrust vectoring</td>
+      <td style="text-align: left">추력편향</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thrust-to-throttle</td>
+      <td style="text-align: left">추진력 대 스로틀</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thrust-to-weight ratio</td>
+      <td style="text-align: left">추진력 대 중량 비율</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tick</td>
+      <td style="text-align: left">틱</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">time dilation</td>
+      <td style="text-align: left">시간팽창</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">time rate of change</td>
+      <td style="text-align: left">시간변화율</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">time step</td>
+      <td style="text-align: left">시간단계(시뮬레이션) 시간간격(적분)</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TNT equivalency</td>
+      <td style="text-align: left">TNT 등가</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tolerance</td>
+      <td style="text-align: left">허용치, 허용량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tons per centimeter immersion</td>
+      <td style="text-align: left">센티미터 당 배수톤</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">torque</td>
+      <td style="text-align: left">회전력</td>
+      <td style="text-align: left">물리책에서는 토크라고도 한다고 역주달것</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tow tank</td>
+      <td style="text-align: left">선형시험수조</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">trailing edge</td>
+      <td style="text-align: left">뒷전</td>
+      <td style="text-align: left">비행기 날개 관련</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">trajectory</td>
+      <td style="text-align: left">탄도, 궤적</td>
+      <td style="text-align: left">골프공의 탄도는 아무래도 좀 어색하더군요….</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">transfer function</td>
+      <td style="text-align: left">전달함수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">transitional ballistics</td>
+      <td style="text-align: left">전이 탄도학</td>
+      <td style="text-align: left">역주달것; 천이 탄도학</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">translation</td>
+      <td style="text-align: left">평행이동</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">transverse axis</td>
+      <td style="text-align: left">가로축</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">transverse wave</td>
+      <td style="text-align: left">횡파</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">trilateration</td>
+      <td style="text-align: left">삼각측량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">trim</td>
+      <td style="text-align: left">(선박의) 트림 (회전)</td>
+      <td style="text-align: left">종경사</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">trimming</td>
+      <td style="text-align: left">(배, 비행기의) 균형잡기, 평형상태 유지하기</td>
+      <td style="text-align: left">아마 풀어써야 할거에요 대부분</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">truncation error</td>
+      <td style="text-align: left">절단오차</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">turbulent</td>
+      <td style="text-align: left">난류</td>
+      <td style="text-align: left">층류의 반댓말</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">turbulent wake</td>
+      <td style="text-align: left">후방 난류</td>
+      <td style="text-align: left">역자주필요: 항공분야에서는 항적난류라고 함.. 후류난류라고도 함</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Turning Time</td>
+      <td style="text-align: left">선회시간</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">type</td>
+      <td style="text-align: left">타입</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">understeer</td>
+      <td style="text-align: left">언더스티어</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">unit of measurement</td>
+      <td style="text-align: left">측정단위</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">unit vector</td>
+      <td style="text-align: left">단위 벡터</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">universal constant</td>
+      <td style="text-align: left">만유인력상수</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">variable mass</td>
+      <td style="text-align: left">가변질량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">vector product</td>
+      <td style="text-align: left">벡터곱</td>
+      <td style="text-align: left">외적과 같음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">vector-matrix notation</td>
+      <td style="text-align: left">벡터와 행렬을 사용한 표기법</td>
+      <td style="text-align: left">풀어쓰는게 보통 더 나을거에요</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">velocity</td>
+      <td style="text-align: left">속도</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">velocity gradient</td>
+      <td style="text-align: left">속도기울기</td>
+      <td style="text-align: left">유체역학 용어는 속도구배라고… 역주 달아놨음</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">vertex</td>
+      <td style="text-align: left">정점</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">vertical force</td>
+      <td style="text-align: left">수직력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Vincenty formula</td>
+      <td style="text-align: left">빈센티 공식</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">virtual mass</td>
+      <td style="text-align: left">가상질량</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">viscosity</td>
+      <td style="text-align: left">점도, 점성</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">viscous drag</td>
+      <td style="text-align: left">점성저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Voith Schneider propeller</td>
+      <td style="text-align: left">보이스 쉬나이더 프로펠러</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">voltage spike</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">전압이 갑자기 상승했다고 풀어썼습니다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">volumetric displays</td>
+      <td style="text-align: left">볼륨 디스플레이</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">watertight</td>
+      <td style="text-align: left">수밀</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">watertight compartment</td>
+      <td style="text-align: left">수밀격실</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wave drag</td>
+      <td style="text-align: left">파도저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">weather helm</td>
+      <td style="text-align: left">웨더 헬름</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">weighted integration</td>
+      <td style="text-align: left">가중적분</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">weld seam</td>
+      <td style="text-align: left">용접선</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wetted drag</td>
+      <td style="text-align: left">젖은 저항</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wind force</td>
+      <td style="text-align: left">바람의 힘, 풍력</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wind tunnel</td>
+      <td style="text-align: left">윈드터널</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">windage</td>
+      <td style="text-align: left">편류</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wing section</td>
+      <td style="text-align: left">날개부분, 날개단면</td>
+      <td style="text-align: left">문맥에 따라 단면으로 해야할 것도 부분으로 해야할것도</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">yaw</td>
+      <td style="text-align: left">요</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">zero range</td>
+      <td style="text-align: left">영점 거리</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Zeroing the Sights</td>
+      <td style="text-align: left">영점조정</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses/COMP2200" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a000">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/COMP2200.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        컴퓨터 동작원리의 이해 | C 언어 강의 | 어셈블리어도 쫌 알랴줆
+                                    </h2>
+                                    <p class="description m-0">10차 산업혁명까지 책임질 컴퓨터 하드웨어 지식! POCU 아카데미에서 C 언어를 마스터하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>C++ Coding Standards | Pope's Dev Docs</title>
+    
+    
+    
+    <link rel="stylesheet" href="/en/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/en/assets/css/site.css?1762032820698118673" />
+    <link rel="stylesheet" href="/en/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/en/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/en/coding-standards/cpp" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/en/">
+            <img class="mt-2 mb-2" src="/en/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/en/archives/">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/en/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/en">Blog</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">C++ Coding Standards</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            Last Update: 2024-08-09
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-en/edit/main/coding-standards/cpp.md"><i class="fas fa-edit"></i> Suggest an Edit</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <h2 id="preface">Preface</h2>
+
+<h3 id="rule-of-thumb">Rule of Thumb</h3>
+
+<ol>
+  <li>Readability first (your code should be your documentation most of the time)</li>
+  <li>Crash/Assert early. Don't wait until the worst case happens to make the crash condition.</li>
+  <li>Follow IDE's auto formatted style unless you have really good reasons not to do so. (Ctrl + K + D in VC++)</li>
+  <li>Learn from existing code</li>
+</ol>
+
+<h3 id="references">References</h3>
+<p>This coding standards is inspired by these coding standards</p>
+<ul>
+  <li><a href="https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard/">Unreal engine 4 coding standard</a></li>
+  <li><a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/codestyleconventions.doc">Doom 3 Code Style Conventions</a></li>
+  <li><a href="http://www.idesign.net/downloads/getdownload/1985">IDesign C# Coding Standard</a></li>
+</ul>
+
+<h2 id="i-main-coding-standards">I. Main Coding Standards</h2>
+<ol>
+  <li>
+    <p>Use Pascal casing for class and structs</p>
+
+    <pre><code class="language-cpp"> class PlayerManager;
+ struct AnimationInfo;
+</code></pre>
+  </li>
+  <li>
+    <p>Use camel casing for local variable names and function parameters</p>
+
+    <pre><code class="language-cpp"> void SomeMethod(const int someParameter);
+ {
+     int someNumber;
+     int id;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use verb-object pairs for method names</p>
+
+    <p>a. Use pascal casing for public methods</p>
+
+    <pre><code class="language-cpp"> public:
+     void DoSomething();
+</code></pre>
+
+    <p>b. Use camel casing for other methods</p>
+
+    <pre><code class="language-cpp"> private:
+     void doSomething();
+</code></pre>
+  </li>
+  <li>
+    <p>However, if a method simply returns a boolean state, the verb part of the name should be prefixed Is, Can, Has or Should. If the function name becomes not natural by doing so, use the 3rd-person singular form of another verb.</p>
+
+    <pre><code class="language-cpp"> public:
+     bool IsAlive(const Person&amp; person) const;
+     bool HasChild(const Person&amp; person) const;
+     bool CanAccept(const Person&amp; person) const;
+     bool ShouldDelete(const Person&amp; person) const;
+     bool Exists(Person&amp; person) const;
+</code></pre>
+  </li>
+  <li>
+    <p>Use ALL_CAPS_SEPARATED_BY_UNDERSCORE for constants and defines</p>
+
+    <pre><code class="language-cpp"> constexpr int SOME_CONSTANT = 1;
+</code></pre>
+  </li>
+  <li>
+    <p>Use all lowercase letters for namespaces</p>
+
+    <pre><code class="language-cpp"> namespace abc{};
+</code></pre>
+  </li>
+  <li>
+    <p>prefix boolean variables with <code>b</code></p>
+
+    <pre><code class="language-cpp"> bool bFired;	// for local and public member variable
+ bool mbFired;	// for private class member variable
+</code></pre>
+  </li>
+  <li>
+    <p>prefix interfaces with <code>I</code></p>
+
+    <pre><code class="language-cpp"> class ISomeInterface;
+</code></pre>
+  </li>
+  <li>
+    <p>prefix enums with <code>e</code></p>
+
+    <pre><code class="language-cpp"> enum class eDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>prefix class member variables with <code>m</code>.</p>
+
+    <pre><code class="language-cpp"> class Employee
+ {
+ protected:
+     int mDepartmentID;
+ private:
+     int mAge;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use ALL_CAPS_SEPARATED_BY_UNDERSCORE for <code>goto</code> labels.</p>
+
+    <pre><code class="language-cpp"> goto MY_LABEL;
+
+
+ // ....
+
+ MY_LABEL:
+     std::cout &lt;&lt; "Magic!" &lt;&lt; std::endl;
+     return 0;
+</code></pre>
+  </li>
+  <li>
+    <p>Methods with return values must have a name describing the value returned</p>
+
+    <pre><code class="language-cpp">uint32_t GetAge() const;
+</code></pre>
+  </li>
+  <li>
+    <p>Use descriptive variable names. e.g <code>index</code> or <code>employee</code> instead of <code>i</code> or <code>e</code> unless it is a trivial index variable used for loops.</p>
+  </li>
+  <li>
+    <p>Capitalize every characters in acronyms only if there is no extra word after them.</p>
+
+    <pre><code class="language-cpp">int OrderID;
+int HttpCode;
+</code></pre>
+  </li>
+  <li>
+    <p>Always use setter and getters for class member variables</p>
+
+    <p>Use:</p>
+    <pre><code class="language-cpp">class Employee
+{
+public:
+    const string&amp; GetName() const;
+    void SetName(const string&amp; name);
+private:
+    string mName;
+}
+</code></pre>
+
+    <p>Instead of:</p>
+    <pre><code class="language-cpp">class Employee
+{
+public:
+    string Name;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use only public member variables for a struct. No functions are allowed. Use pascal casing for the members of a struct.</p>
+
+    <pre><code class="language-cpp">struct MeshData
+{
+    int32_t VertexCount;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use <code>#include&lt;&gt;</code> for external header files. Use <code>#include ""</code> for in-house header files</p>
+  </li>
+  <li>
+    <p>Put external header files first, followed by in-house header files in alphabetic order if possible.</p>
+
+    <pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+
+#include "AnimationInfo.h"
+</code></pre>
+  </li>
+  <li>
+    <p>Use <code>#pragma once</code> at the beginning of every header file</p>
+  </li>
+  <li>
+    <p>Declare local variables as close as possible to the first line where it is being used.</p>
+  </li>
+  <li>
+    <p>Use precision specification for floating point values unless there is an explicit need for a <code>double</code></p>
+
+    <pre><code class="language-cpp">float f = 0.5f;
+</code></pre>
+  </li>
+  <li>
+    <p>Always have a <code>default</code> case for a <code>switch</code> statement.</p>
+
+    <pre><code class="language-cpp">switch (number)
+{
+case 0:
+    ... 
+    break;
+default:
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Always add predefined FALLTHROUGH for switch case fall through unless there is no code in the <code>case</code> statement. This will be replaced by <code>[[fallthrough]]</code> attribute coming in for C++17 later</p>
+
+    <pre><code class="language-cpp">switch (number)
+{
+case 0:
+    DoSomething();
+    FALLTHROUGH
+case 1:
+    DoFallthrough();
+    break;
+case 2:
+case 3:
+    DoNotFallthrough();
+    break;
+default:
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>If default case must not happen in a <code>switch</code> case, always add <code>Assert(false)</code>. In our assert implementation, this will add optimization hint for release build.</p>
+
+    <pre><code class="language-cpp">switch (type)
+{
+case 1:
+    ... 
+    break;
+default:
+    Assert(false, "unknown type");
+    break;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use <code>const</code>s as much as possible even for local variable and function parameters.</p>
+  </li>
+  <li>
+    <p>Any member functions that doesn't modify the object must be <code>const</code></p>
+
+    <pre><code class="language-cpp">int GetAge() const;
+</code></pre>
+  </li>
+  <li>
+    <p>Do not return const value type. <code>Const</code> return is only for reference and pointers</p>
+  </li>
+  <li>
+    <p>Names of recursive functions end with <code>Recursive</code>.</p>
+
+    <pre><code class="language-cpp">void FibonacciRecursive();
+</code></pre>
+  </li>
+  <li>
+    <p>Order of class variables and methods must be as follows:</p>
+
+    <p>a. list of friend classes
+b. public methods
+c. protected methods
+d. private methods
+e. protected variables
+f. private variables</p>
+  </li>
+  <li>
+    <p>Function overloading must be avoided in most cases</p>
+
+    <p>Use:</p>
+    <pre><code class="language-cpp">const Anim* GetAnimByIndex(const int index) const;
+const Anim* GetAnimByName(const char* name) const;
+</code></pre>
+
+    <p>Instead of:</p>
+    <pre><code class="language-cp">const Anim* GetAnim(const int index) const;
+const Anim* GetAnim(const char* name) const;
+</code></pre>
+  </li>
+  <li>
+    <p>Overloading functions to add <code>const</code> accessible function is allowed.</p>
+
+    <pre><code class="language-cpp">Anim* GetAnimByIndex(const int index);
+const Anim* GetAnimByIndex(const int index) const;
+</code></pre>
+  </li>
+  <li>
+    <p>Avoid use of <code>const_cast</code>. Instead create a function that clearly returns an editable version of the object</p>
+  </li>
+  <li>
+    <p>Each class must be in a separate source file unless it makes sense to group several smaller classes.</p>
+  </li>
+  <li>
+    <p>The filename must be the same as the name of the class including upper and lower cases.</p>
+
+    <pre><code class="language-cpp">class PlayerAnimation;
+
+PlayerAnimation.cpp
+PlayerAnimation.h
+</code></pre>
+  </li>
+  <li>
+    <p>When a class spans across multiple files, these files have a name that starts with the name of the class, followed by an underscore and the subsection name.</p>
+
+    <pre><code class="language-cpp">class RenderWorld;
+
+RenderWorld_load.cpp
+RenderWorld_demo.cpp
+RenderWorld_portals.cpp
+</code></pre>
+  </li>
+  <li>
+    <p>Platform specific class for <a href="https://www.youtube.com/watch?v=GnWASmocihE">reverse OOP</a> pattern uses similar naming convention</p>
+
+    <pre><code class="language-cpp">class Renderer;
+
+Renderer.h		// all renderer interfaces called by games
+Renderer.cpp	// Renderer's Implementations which are
+            // to all platforms
+Renderer_gl.h	// RendererGL interfaces called by
+            // Renderer
+Renderer_gl.cpp	// RendererGL implementations
+</code></pre>
+  </li>
+  <li>
+    <p>Use our own version of Assert instead of standard c assert</p>
+  </li>
+  <li>
+    <p>Use assert for any assertion you have. Assert is not recoverable. This can be replaced by compiler optimization hint keyword <a href="https://docs.microsoft.com/en-us/cpp/intrinsics/assume">__assume</a> for the release build.</p>
+  </li>
+  <li>
+    <p>Any memory allocation must be done through our own New and Delete keyword.</p>
+  </li>
+  <li>
+    <p>Memory operations such as memset, memcpy and memmove also must be done through our own MemSet, MemCpy and MemMove.</p>
+  </li>
+  <li>
+    <p>Generally prefer reference(<code>&amp;</code>) over pointers unless you need <code>nullptr</code> for any reason. (exceptions are mentioned right below)</p>
+  </li>
+  <li>
+    <p>Use pointers for <code>out</code> parameters. Also prefix the function parameters with out.</p>
+
+    <p>function:</p>
+    <pre><code class="language-cpp">void GetScreenDimension(uint32_t* const outWidth, uint32_t* const  outHeight)
+{
+}
+</code></pre>
+
+    <p>caller:</p>
+    <pre><code class="language-cpp">uint32_t width;
+uint32_t height;
+GetScreenDimension(&amp;width, &amp;height);
+</code></pre>
+  </li>
+  <li>
+    <p>The above out parameters must not be null. (Use assert, not if statement)</p>
+
+    <pre><code class="language-cpp">void GetScreenDimension(uint32_t* const outWidth, uint32_t* const  outHeight)
+{
+    Assert(outWidth);
+    Assert(outHeight);
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use pointers if the parameter will be saved internally.</p>
+
+    <pre><code class="language-cpp">void AddMesh(Mesh* const mesh)
+{
+    mMeshCollection.push_back(mesh);
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use pointers if the parameter should be generic <code>void*</code> parameter</p>
+
+    <pre><code class="language-cpp">void Update(void* const something)
+{
+}
+</code></pre>
+  </li>
+  <li>
+    <p>The name of a bitflag enum must be suffixed by <code>Flags</code></p>
+
+    <pre><code class="language-cpp">enum class eVisibilityFlags
+{
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Do not add size specifier for <code>enum</code> unless you need that specific size (e.g, for serialization of data members)</p>
+
+    <pre><code class="language-cpp">enum class eDirection : uint8_t
+{
+    North,
+    South
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer overloading over default parameters</p>
+  </li>
+  <li>
+    <p>When default parameters are used, restrict them to natural immutable constants such as <code>nullptr</code>, <code>false</code> or <code>0</code>.</p>
+  </li>
+  <li>
+    <p>Prefer fixed-size containers whenever possible.</p>
+  </li>
+  <li>
+    <p><code>reserve()</code> dynamic containers whenever possible</p>
+  </li>
+  <li>
+    <p>Always put parentheses for defined numbers</p>
+
+    <pre><code class="language-cpp">#define NUM_CLASSES (1)
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer constants over defines</p>
+  </li>
+  <li>
+    <p>Always use forward declaration if possible instead of using includes</p>
+  </li>
+  <li>
+    <p>All compiler warnings must be addressed.</p>
+  </li>
+  <li>
+    <p>Shadowed variables are not allowed.</p>
+
+    <pre><code class="language-cpp">class SomeClass
+{
+public:
+    int32_t Count;
+public:
+    void Func(const int32_t Count)
+    {
+        for (int32_t count = 0; count != 10; ++count)
+        {
+            // Use Count
+        }
+    }
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Declare only one variable per line</p>
+
+    <p>BAD:</p>
+    <pre><code class="language-cpp">int counter, index;
+</code></pre>
+
+    <p>GOOD:</p>
+    <pre><code class="language-cpp">int counter;
+int index;
+</code></pre>
+  </li>
+  <li>
+    <p>Take advantage of <a href="https://docs.microsoft.com/en-us/previous-versions/ms364057(v=vs.80)">NRVO</a>, when you are returning a local object. This means you need to have only one return statement inside your function. This applies only when you return an object by value.</p>
+  </li>
+  <li>
+    <p>Do not use <code>const</code> member variables in a <code>struct</code> or <code>class</code> simply to prevent modification after initialization. Same rule is applied to reference(<code>&amp;</code>) member variables.</p>
+  </li>
+  <li>
+    <p>When initializing member variables, use initializer list over assignments, by default.</p>
+  </li>
+  <li>
+    <p>«&lt;__restrict keyword</p>
+  </li>
+</ol>
+
+<h2 id="ii-code-formatting">II. Code Formatting</h2>
+
+<ol>
+  <li>
+    <p>There must be a blank line between includes and body.</p>
+  </li>
+  <li>
+    <p>Use Visual Studio default for tabs. If you are not using Visual Studio, use real tabs that are equal to 4 spaces.</p>
+  </li>
+  <li>
+    <p>Always place an opening curly brace (<code>{</code>) in a new line</p>
+  </li>
+  <li>
+    <p>Add curly braces even if there's only one line in the scope</p>
+
+    <pre><code class="language-cpp"> if (bSomething)
+ {
+     return;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Put pointer or reference sign right next to the type</p>
+
+    <pre><code class="language-cpp"> int&amp; number;
+ int* number;
+</code></pre>
+  </li>
+  <li>
+    <p>When initializing member variables via initializer list, initialize one member variable per line and follow below format.</p>
+
+    <p>BAD:</p>
+    <pre><code class="language-cpp"> MyClass::MyClass(const int var1, const int var2)
+     :mVar1(var1), mVar2(var2), mVar3(0)
+ {
+</code></pre>
+
+    <p>GOOD:</p>
+    <pre><code class="language-cpp"> MyClass::MyClass(const int var1, const int var2)
+     : mVar1(var1)
+     , mVar2(var2)
+     , mVar3(0)
+     {
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="iii-modern-language-features">III. Modern Language Features</h2>
+
+<ol>
+  <li>
+    <p><code>override</code> and <code>final</code> keywords are mandatory</p>
+  </li>
+  <li>
+    <p>Use <code>enum class</code> always</p>
+
+    <pre><code class="language-cpp"> enum class eDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use <code>static_assert</code> over <code>Assert</code>, if possible.</p>
+  </li>
+  <li>
+    <p>Use <code>nullptr</code> over <code>NULL</code></p>
+  </li>
+  <li>
+    <p>Use <code>unique_ptr</code> when a object lifetime is solely handled inside a class. (i.e. new in constructor delete in destructor)</p>
+  </li>
+  <li>
+    <p>Range-based <code>for</code> are recommended where applicable</p>
+  </li>
+  <li>
+    <p>Do not use <code>auto</code> unless it is for a iterator or <code>new</code> keyword is on the same line, showing which object is created clearly</p>
+  </li>
+  <li>
+    <p>Do not manually perform return value optimization using <code>std::move</code>. It breaks automatic <a href="https://msdn.microsoft.com/en-us/library/ms364057(v=vs.80).aspx">NRVO optimization</a>.</p>
+  </li>
+  <li>
+    <p>Move constructor and move assignment operator are allowed.</p>
+  </li>
+  <li>
+    <p>Use <code>constexpr</code> instead of const for simple constant variables</p>
+
+    <pre><code class="language-cpp">constexpr int DEFAULT_BUFFER_SIZE = 65536
+</code></pre>
+
+    <p>Instead of</p>
+
+    <pre><code class="language-cpp">const int DEFAULT_BUFFER_SIZE = 65536
+</code></pre>
+  </li>
+  <li>
+    <p>«&lt;TBD: constexpr</p>
+  </li>
+  <li>
+    <p>«&lt;TBD: Lambda</p>
+  </li>
+  <li>
+    <p>«&lt;TBD: do not use shared_ptr</p>
+  </li>
+</ol>
+
+<h2 id="iv-project-settings-and-project-structure">IV. Project Settings and Project Structure</h2>
+<ol>
+  <li>
+    <p>Visual C++: Always use property sheets to change project settings</p>
+  </li>
+  <li>
+    <p>Do not disable compile warnings in project settings. Use #pragma in code instead.</p>
+  </li>
+</ol>
+
+                </section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-en"
+    data-repo-id="R_kgDOONEsjQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsjc4CoXJq"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2021 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/ko">한국어</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-en" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrenderer" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/en/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/en/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/en/assets/lib/prism/js/prism.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/en/assets/js/prism/prism-masm.min.js"></script>
+<script src="/en/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>C# Coding Standards | Pope's Dev Docs</title>
+    
+    
+    
+    <link rel="stylesheet" href="/en/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/en/assets/css/site.css?1762032820698118673" />
+    <link rel="stylesheet" href="/en/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/en/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/en/coding-standards/csharp" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/en/">
+            <img class="mt-2 mb-2" src="/en/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/en/archives/">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/en/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/en">Blog</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">C# Coding Standards</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            Last Update: 2024-02-02
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-en/edit/main/coding-standards/csharp.md"><i class="fas fa-edit"></i> Suggest an Edit</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <h2 id="preface">Preface</h2>
+
+<h3 id="rule-of-thumb">Rule of Thumb</h3>
+
+<ol>
+  <li>Readability first (your code should be your documentation most of the time)</li>
+  <li>Follow IDE's auto formatted style unless you have really good reasons not to do so. (Ctrl + K + D in Visual Studio)</li>
+  <li>Learn from existing code</li>
+</ol>
+
+<h3 id="references">References</h3>
+
+<p>This coding standards is inspired by these coding standards</p>
+
+<ul>
+  <li><a href="https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard/">Unreal engine 4 coding standard</a></li>
+  <li><a href="ftp://ftp.idsoftware.com/idstuff/doom3/source/codestyleconventions.doc">Doom 3 Code Style Conventions</a></li>
+  <li><a href="http://www.idesign.net/downloads/getdownload/1985">IDesign C# Coding Standard</a></li>
+</ul>
+
+<h3 id="ide-helper">IDE Helper</h3>
+
+<p>The settings that can imported into your IDE can be found <a href="https://github.com/popekim/CodingStyle/tree/master/CSharp">here</a>.</p>
+
+<h2 id="i-main-coding-standards">I. Main Coding Standards</h2>
+
+<ol>
+  <li>
+    <p>Use Pascal casing for class and structs</p>
+
+    <pre><code class="language-cs"> class PlayerManager;
+ struct PlayerData;
+</code></pre>
+  </li>
+  <li>
+    <p>Use camel casing for local variable names and function parameters</p>
+
+    <pre><code class="language-cs">public void SomeMethod(int someParameter)
+{
+    int someNumber;
+    int id;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Use verb(base form)-object pairs for method names, by default.</p>
+
+    <pre><code class="language-cs"> public uint GetAge()
+ {
+     // function implementation...
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>However, if a method simply returns a boolean state, the verb part of the name should be prefixed Is, Can, Has or Should. If the function name becomes not natural by doing so, use the 3rd-person singular form of another verb.</p>
+
+    <pre><code class="language-cs"> public bool IsAlive(Person person);
+ public bool Has(Person person);
+ public bool CanAccept(Person person);
+ public bool ShouldDelete(Person person);
+ public bool Exists(Person person);
+</code></pre>
+  </li>
+  <li>
+    <p>Use pascal casing for all method names except (see below)</p>
+
+    <pre><code class="language-cs"> public uint GetAge()
+ {
+     // function implementation...
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use camel case for any non-public method. You might need to add custom Visual Studio style rule as described here</p>
+
+    <pre><code class="language-cs"> private uint getAge()
+ {
+     // function implementation...
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use ALL_CAPS_SEPARATED_BY_UNDERSCORE for constants</p>
+
+    <pre><code class="language-cs"> const int SOME_CONSTANT = 1;
+</code></pre>
+  </li>
+  <li>
+    <p>Use static readonly if an object is a constant</p>
+
+    <pre><code class="language-cs">public static readonly MyConstClass MY_CONST_OBJECT = new MyConstClass();
+</code></pre>
+  </li>
+  <li>
+    <p>Use ALL_CAPS_SEPARATED_BY_UNDERSCORE for <code>static readonly</code> variables used as constants</p>
+  </li>
+  <li>
+    <p>Use <code>readonly</code> when a variable must be assigned only once</p>
+
+    <pre><code class="language-cs"> public class Account
+ {
+     private readonly string mPassword;
+    
+     public Account(string password)
+     {
+         mPassword = password;
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Use pascal casing for namespaces</p>
+
+    <pre><code class="language-cs"> namespace System.Graphics
+</code></pre>
+  </li>
+  <li>
+    <p>prefix boolean variables with <code>b</code>.</p>
+
+    <pre><code class="language-cs"> bool bFired;		// for local variable
+ private bool mbFired;	// for private member variable
+</code></pre>
+  </li>
+  <li>
+    <p>prefix boolean properties with <code>Is</code>, <code>Can</code>, <code>Should</code> or <code>Has</code>.</p>
+
+    <pre><code class="language-cs"> public bool IsFired { get; private set; }
+ public bool HasChild { get; private set; }
+ public bool CanModal { get; private set; }
+ public bool ShouldRedirect { get; private set; }
+</code></pre>
+  </li>
+  <li>
+    <p>prefix interfaces with <code>I</code></p>
+
+    <pre><code class="language-cs"> interface ISomeInterface;
+</code></pre>
+  </li>
+  <li>
+    <p>prefix enums with <code>E</code></p>
+
+    <pre><code class="language-cs"> public enum EDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>prefix structs with <code>S</code> unless they are <code>readonly struct</code>s</p>
+
+    <pre><code class="language-cs"> public struct SUserID;
+</code></pre>
+  </li>
+  <li>
+    <p>prefix <code>private</code> member variables with <code>m</code>. Use Pascal casing for the rest of a member variable</p>
+
+    <pre><code class="language-cs"> Public class Employee
+ {
+     public int DepartmentID { get; set; }
+     private int mAge;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Methods with return values must have a name describing the value returned</p>
+
+    <pre><code class="language-cs"> public uint GetAge();
+</code></pre>
+  </li>
+  <li>
+    <p>Use descriptive variable names. e.g <code>index</code> or <code>employee</code> instead of <code>i</code> or <code>e</code> unless it is a trivial index variable used for loops.</p>
+  </li>
+  <li>
+    <p>Capitalize every character in acronyms only if there is no extra word after them.</p>
+
+    <pre><code class="language-cs"> public int OrderID { get; private set; }
+ public string HttpAddress { get; private set; }
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer properties over getter setter functions</p>
+
+    <p>BAD:</p>
+    <pre><code class="language-cs"> public class Employee
+ {
+     private string mName;
+     public string GetName();
+     public string SetName(string name);
+ }
+</code></pre>
+
+    <p>GOOD:</p>
+    <pre><code class="language-cs"> public class Employee
+ {
+     public string Name { get; set; }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Declare local variables as close as possible to the first line where it is being used.</p>
+  </li>
+  <li>
+    <p>Use precision specification for floating point values unless there is an explicit need for a <code>double</code>.</p>
+
+    <pre><code class="language-cs"> float f = 0.5F;
+</code></pre>
+  </li>
+  <li>
+    <p>Always have a <code>default</code>: case for a <code>switch</code> statement.</p>
+
+    <pre><code class="language-cs"> switch (number)
+ {
+     case 0:
+         ... 
+         break;
+     default:
+         break;
+</code></pre>
+  </li>
+  <li>
+    <p>If <code>default</code>: case must not happen in a <code>switch</code> case, always add <code>Debug.Fail();</code></p>
+
+    <pre><code class="language-cs"> switch (type)
+ {
+     case 1:
+         ... 
+         break;
+     default:
+         Debug.Fail("unknown type");
+         break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p><code>Debug.Assert()</code> every assumptions you make while writing code.</p>
+  </li>
+  <li>
+    <p>Names of recursive functions end with <code>Recursive</code></p>
+
+    <pre><code class="language-cs"> public void FibonacciRecursive();
+</code></pre>
+  </li>
+  <li>
+    <p>Order of class variables and methods must be as follows:</p>
+
+    <ol>
+      <li>member variables</li>
+      <li>properties (exception: if a private variable is accessed by a property, it should appear right before the mapped property)</li>
+      <li>constructors</li>
+      <li>methods (follow public to private order)</li>
+    </ol>
+  </li>
+  <li>
+    <p>In a class, group relevant methods together. Aslo group relevant member variables together.</p>
+  </li>
+  <li>
+    <p>If parameter types are general, function overloading must be avoided</p>
+
+    <p>Use:</p>
+    <pre><code class="language-cs"> public Anim GetAnimByIndex(int index);
+ public Anim GetAnimByName(string name);
+</code></pre>
+
+    <p>Instead of:</p>
+    <pre><code class="language-cs"> public Anim GetAnim(int index);
+ public Anim GetAnim(string name);
+</code></pre>
+  </li>
+  <li>
+    <p>Each class must be in a separate source file unless it makes sense to group several smaller classes.</p>
+  </li>
+  <li>
+    <p>The filename must be the same as the name of the class including upper and lower cases.</p>
+
+    <pre><code class="language-cs"> public class PlayerAnimation {}
+</code></pre>
+
+    <p>PlayerAnimation.cs</p>
+  </li>
+  <li>
+    <p>When a class spans across multiple files(i.e. partial classes), these files have a name that starts with the name of the class, followed by a dot and the subsection name.</p>
+
+    <pre><code class="language-cs"> public partial class Human;
+</code></pre>
+
+    <p>Human.Head.cs
+ Human.Body.cs
+ Human.Arm.cs</p>
+  </li>
+  <li>
+    <p>Use <code>assert</code> for any assertion you have. Assert is not recoverable. (e.g, most function will have <code>Debug.Assert</code>(not null parameters) )</p>
+  </li>
+  <li>
+    <p>The name of a bitflag enum must be suffixed by <code>Flags</code></p>
+
+    <pre><code class="language-cs"> [Flags]
+ public enum EVisibilityFlags
+ {
+     None = 0,
+     Character = 1 &lt;&lt; 0,
+     Terrain = 1 &lt;&lt; 1,
+     Building = 1 &lt;&lt; 2,
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer overloading over default parameters</p>
+  </li>
+  <li>
+    <p>When default parameters are used, restrict them to natural immutable constants such as <code>null</code>, <code>false</code> or <code>0</code>.</p>
+  </li>
+  <li>
+    <p>Shadowed variables are not allowed.</p>
+
+    <pre><code class="language-cs"> public class SomeClass
+ {
+     public int Count { get; set; }
+     public void Func(int count)
+     {
+         for (int count = 0; count != 10; ++count)
+         {
+             // Use count
+         }
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Always use containers from <code>System.Collections.Generic</code> over ones from <code>System.Collections</code>. Using a pure array is fine as well.</p>
+  </li>
+  <li>
+    <p>Use real type over implicit typing(i.e, <code>var</code>) unless the type is unimportant. Some acceptable <code>var</code> usage includes <code>IEnumerable</code> and when the <code>new</code> keyword is used for anonymous type.</p>
+  </li>
+  <li>
+    <p>Use <code>static</code> class, not singleton pattern</p>
+  </li>
+  <li>
+    <p>Use <code>async Task</code> instead of <code>async void</code>. The only place where <code>async void</code> is allowed is for the event handler.</p>
+  </li>
+  <li>
+    <p>Do not add <code>-Async</code> postfix for <code>async</code> methods.</p>
+  </li>
+  <li>
+    <p>Validate any external data at the boundary and return before passing the data into our functions. This means that we assume all data is valid after this point.</p>
+  </li>
+  <li>
+    <p>Therefore, do not throw any exception from inside non-boundary methods. Also, exceptions should be handled at the boundary only.</p>
+  </li>
+  <li>
+    <p>As an exception to the previous rule, exception throwing is allowed when <code>switch</code>-<code>default</code> is used to catch missing <code>enum</code> handling logic. Still, do not catch this exception</p>
+
+    <pre><code class="language-cs"> switch (accountType)
+ {
+     case AccountType.Personal:
+         return something;
+     case AccountType.Business:
+         return somethingElse;
+     default:
+         throw new NotImplementedException($"unhandled switch case: {accountType}");
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer not to allow <code>null</code> parameters in your function, especially from a <code>public</code> one.</p>
+  </li>
+  <li>
+    <p>If <code>null</code> parameter is used, and postfix the parameter name with <code>OrNull</code></p>
+
+    <pre><code class="language-cs"> public Anim GetAnim(string nameOrNull)
+ {
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Prefer not to return <code>null</code> from any function, especially from a <code>public</code> one. However, you sometimes need to do this to avoid throwing exceptions.</p>
+  </li>
+  <li>
+    <p>If <code>null</code> is returned from any function. Postfix the function name with <code>OrNull</code>.</p>
+
+    <pre><code class="language-cs"> public string GetNameOrNull();
+</code></pre>
+  </li>
+  <li>
+    <p>Utilize in-line Lambda expressions exclusively for single, straightforward statements.</p>
+  </li>
+  <li>
+    <p>Avoid object initializer unless it is used with <code>required</code> modifier(C# 11.0) and init-only setter (C# 9.0)</p>
+  </li>
+  <li>
+    <p>Declare the variable for an <code>out</code> parameter on a seprate line. Do NOT declare it int the argument list.</p>
+  </li>
+  <li>
+    <p>Do not use the null coalescing operator, introduced in C# 7.0.</p>
+  </li>
+  <li>
+    <p>Do not use <code>using</code> declaration, introduced in C# 8.0. Use <code>using</code> statement instead.</p>
+  </li>
+  <li>
+    <p>Always specify a data type after <code>new</code> keyword unless you are using annoymous type inside a function.</p>
+  </li>
+  <li>
+    <p>Use private init-only setter(<code>private init</code>), introduced in C# 9.0, wherever possible.</p>
+  </li>
+  <li>
+    <p>Use file scoped namespace declarations, introduced in C# 10.0.</p>
+  </li>
+  <li>
+    <p>When strong-typing a generic type, use <code>readonly record struct</code>, introduced in C# 10.0.</p>
+  </li>
+</ol>
+
+<h2 id="ii-code-formatting">II. Code Formatting</h2>
+
+<ol>
+  <li>
+    <p>Use Visual Studio's default for tabs. If another IDE is used, use 4 spaces instead of a real tab.</p>
+  </li>
+  <li>
+    <p>Always place an opening curly brace (<code>{</code>) in a new line</p>
+  </li>
+  <li>
+    <p>Add curly braces even if there's only one line in the scope</p>
+
+    <pre><code class="language-cs"> if (bSomething)
+ {
+     return;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Declare only one variable per line</p>
+
+    <p>BAD:</p>
+    <pre><code class="language-cs"> int counter = 0, index = 0;
+</code></pre>
+
+    <p>GOOD:</p>
+    <pre><code class="language-cs"> int counter = 0;
+ int index = 0;
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="iii-project-settings">III. Project Settings</h2>
+<ol>
+  <li>
+    <p>For Release builds, treat compiler warnings as errors.</p>
+  </li>
+  <li>
+    <p>Do not use implicit global using (C# 10.0)</p>
+  </li>
+</ol>
+
+<h2 id="iv-framework-specific-guidelines">IV. Framework Specific Guidelines</h2>
+
+<h3 id="a-auto-serializationdeserialization-eg-systemtextjson">A. Auto Serialization/Deserialization (e.g. <code>System.Text.Json</code>)</h3>
+
+<ol>
+  <li>
+    <p>Auto-serializable data must be defined as <code>class</code>.</p>
+  </li>
+  <li>
+    <p>Auto-serializable <code>class</code> must not contain any library-specific attribute in it.</p>
+  </li>
+  <li>
+    <p>All data in auto-serializable <code>class</code> must be declared/defined via <code>public</code> auto properties. (1-to-1 mapping between properties and member variables)</p>
+  </li>
+  <li>
+    <p>If you need a read-only property in auto-serializable <code>class</code>, make a <code>public</code> method instead.</p>
+  </li>
+  <li>
+    <p>Auto-serializable <code>class</code> must have only one <code>public</code> constructor. This constructor must not take any parameter.</p>
+  </li>
+  <li>
+    <p>Do not directly call a auto-serialization method. (e.g. <code>JsonSerializer.Serialize&lt;&gt;()</code>). Make a wrapper method instead to limit the parameter types.</p>
+  </li>
+</ol>
+
+<h3 id="b-xaml-controls">B. XAML Controls</h3>
+
+<ol>
+  <li>
+    <p>Do not name (i.e, <code>x:name</code>) a control unless you absolutely need it</p>
+  </li>
+  <li>
+    <p>Use pascal casing with prefixed <code>x</code> character for the name.</p>
+
+    <pre><code class="language-cs"> xLabelName
+</code></pre>
+  </li>
+  <li>
+    <p>Prefix the name with full control type</p>
+
+    <pre><code class="language-cs"> xLabelName
+ xButtonAccept
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="c-asp-net-core">C. ASP .NET Core</h3>
+
+<ol>
+  <li>
+    <p>When using DTO(Data Transfer Object)s for a request body for a RESTful API, make each value-type property as <code>nullable</code> so that model validation is automatic</p>
+
+    <pre><code class="language-cs"> [Required]
+ public Guid? ID { get; set; }
+</code></pre>
+  </li>
+  <li>
+    <p>Validate all the requests as the first thing in any controller method. Once validation passes, all inputs are assumed to be correct. So no <code>[required]</code> <code>nullable</code> properties will be <code>null</code>.</p>
+  </li>
+  <li>
+    <p>Unlike above, <code>[RouteParam]</code> will not have <code>?</code></p>
+
+    <pre><code class="language-cs"> public bool GetUser([RouteParam]Guid userID)
+</code></pre>
+  </li>
+</ol>
+
+                </section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-en"
+    data-repo-id="R_kgDOONEsjQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsjc4CoXJq"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2021 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/ko">한국어</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-en" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrenderer" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/en/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/en/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/en/assets/lib/prism/js/prism.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/en/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/en/assets/js/prism/prism-masm.min.js"></script>
+<script src="/en/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

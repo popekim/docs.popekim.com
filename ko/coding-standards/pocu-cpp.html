@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>POCU 아카데미용 C++ 코딩 표준 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1762032823369147567" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/coding-standards/pocu-cpp" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">POCU 아카데미용 C++ 코딩 표준</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2024-08-09
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/coding-standards/pocu-cpp.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>본 코딩 표준은 <a href="/ko/coding-standards/cpp">Pope Kim의 C++ 코딩 표준</a>을 <a href="https://pocu.academy/ko/">POCU 아카데미</a>에 적합하게 수정한 것입니다. 취소선(<del>취소선</del>) 표시가 된 항목들은 무시해주세요.</p>
+
+<ul>
+  <li>원문(영어): <a href="https://docs.popekim.com/en/coding-standards/cpp">C++ Coding Standards</a></li>
+</ul>
+
+<h2 id="머리말">머리말</h2>
+<h3 id="기본-원칙">기본 원칙</h3>
+
+<ol>
+  <li>가독성을 최우선으로 삼는다. (대부분의 경우 코드는 그 자체가 문서의 역할을 해야 함)</li>
+  <li>문제가 있을 경우 최대한 빨리 크래시가 나거나 assert에 걸리도록 코드를 작성한다.  어떻게든 프로그램을 돌게 만들다가 나중에 크래시가 나는 것보다 나쁜 상황은 없다.</li>
+  <li>정말 합당한 이유가 있지 않는 한, 통합개발환경(IDE)의 자동 서식을 따른다. (비주얼 스튜디오의 "Ctrl + K + D" 기능)</li>
+  <li>본 코딩표준을 따라 잘 짜여진 기존의 코드에서 배운다.</li>
+</ol>
+
+<h2 id="i-메인-코딩-표준">I. 메인 코딩 표준</h2>
+<ol>
+  <li>클래스와 구조체의 이름은 파스칼 표기법을 따른다.
+    <pre><code class="language-cpp"> class PlayerManager;
+ struct AnimationInfo;
+</code></pre>
+  </li>
+  <li>지역 변수 그리고 함수의 매개 변수의 이름은 카멜 표기법을 따른다.
+    <pre><code class="language-cpp"> void SomeMethod(const int someParameter);
+ {
+     int someNumber;
+     int id;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>정적(<code>static</code>) 변수의 이름 앞에는 <code>s</code>를 붙인다.</p>
+
+    <pre><code class="language-c">static int sNumMonsters;     // 지역 변수와 public 멤버 변수의 경우
+static bool sbInitialized;   // 클래스의 private static 변수의 경우
+</code></pre>
+  </li>
+  <li>
+    <p>메서드 이름은 동사-목적어 쌍으로 표기한다.</p>
+
+    <p>a. public 메서드의 이름은 파스칼 표기법을 따른다.</p>
+
+    <pre><code class="language-cpp"> public:
+     void DoSomething();
+</code></pre>
+
+    <p>b. 그 외 다른 메서드의 이름은 카멜 표기법을 따른다.</p>
+
+    <pre><code class="language-cpp"> private:
+     void doSomething();
+</code></pre>
+  </li>
+  <li>
+    <p>단, 단순히 부울(bool) 상태를 반환하는 메서드의 동사 부분은 최대한 <code>Is</code>, <code>Can</code>, <code>Has</code>, <code>Should</code>를 사용하되 그러는 것이 부자연스러울 경우에는 상태를 나타내는 다른 3인칭 단수형 동사를 사용한다.</p>
+
+    <pre><code class="language-cpp"> public:
+     bool IsAlive(const Person&amp; person) const;
+     bool HasChild(const Person&amp; person) const;
+     bool CanAccept(const Person&amp; person) const;
+     bool ShouldDelete(cosnt Person&amp; person) const;
+     bool Exists(Person&amp; person) const;
+</code></pre>
+  </li>
+  <li>
+    <p>상수 또는 <code>#define</code> 으로 정의된 상수의 이름은 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+
+    <pre><code class="language-cpp"> constexpr int SOME_CONSTANT = 1;
+</code></pre>
+  </li>
+  <li>네임스페이스는 모두 소문자로 작성한다.
+    <pre><code class="language-cpp"> namespace abc{};
+</code></pre>
+  </li>
+  <li>부울(boolean)형 변수는 앞에 <code>b</code>를 붙인다.
+    <pre><code class="language-cpp"> bool bFired;	// 지역 변수와 public 멤버 변수의 경우
+ bool mbFired;	// 클래스의 private 멤버 변수의 경우
+</code></pre>
+  </li>
+  <li>인터페이스를 선언할 때는 앞에 <code>I</code>를 붙인다.
+    <pre><code class="language-cpp"> class ISomeInterface;
+</code></pre>
+  </li>
+  <li>열거형을 선언할 때는 앞에 <code>e</code>를 붙인다.
+    <pre><code class="language-cpp"> enum class eDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>클래스 멤버 변수명은 앞에 <code>m</code>을 붙인다.
+    <pre><code class="language-cpp"> class Employee
+ {
+ protected:
+     int mDepartmentID;
+ private:
+     int mAge;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p><code>goto</code> 레이블 명은 모두 대문자로 하되 밑줄로 각 단어를 분리한다.</p>
+
+    <pre><code class="language-cpp"> goto MY_LABEL;
+
+
+ // ....
+
+ MY_LABEL:
+     std::cout &lt;&lt; "Magic!" &lt;&lt; std::endl;
+     return 0;
+
+</code></pre>
+  </li>
+  <li>값을 반환하는 함수의 이름은 무엇을 반환하는지 알 수 있게 짓는다.
+    <pre><code class="language-cpp"> uint32_t GetAge() const;
+</code></pre>
+  </li>
+  <li>
+    <p>단순히 반복문에 사용되는 변수가 아닌 경우엔 <code>i</code>, <code>e</code> 같은 변수명 대신 <code>index</code>, <code>employee </code>처럼 변수에 저장되는 데이터를 한 눈에 알아볼 수 있는 변수명을 사용한다.</p>
+  </li>
+  <li>
+    <p>뒤에 추가적인 단어가 오지 않는 경우 줄임말은 모두 대문자로 표기한다.</p>
+
+    <pre><code class="language-cpp"> int OrderID;
+ int HttpCode;
+</code></pre>
+  </li>
+  <li>
+    <p>클래스 멤버 변수에 접근할 때는 항상 setter와 getter를 사용한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+    <pre><code class="language-cpp"> class Employee
+ {
+ public:
+     string Name;
+ }
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+    <pre><code class="language-cpp"> class Employee
+ {
+ public:
+     const string&amp; GetName() const;
+     void SetName(const string&amp; name);
+ private:
+     string mName;
+ }
+</code></pre>
+  </li>
+  <li>구조체는 오직 <code>public</code> 멤버 변수만 가질 수 있다. 구조체의 멤버 변수명은 파스칼 표기법을 따르며, 구조체 안에서 함수는 사용하지 않는다.
+    <pre><code class="language-cpp"> struct MeshData
+ {
+     int32_t VertexCount;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>외부 헤더 파일을 인클루드 할 때는 <code>#include&lt;&gt;</code> 을 사용. 자체적으로 만든 헤더 파일을 인클루드 할 때는 <code>#include ""</code> 를 사용한다.</p>
+  </li>
+  <li>
+    <p>외부 헤더 파일을 먼저 인클루드한 뒤, 내부 헤더 파일을 인클루드 한다. 인클루드를 할  때, 가능하다면 알파벳 순서를 따른다.</p>
+
+    <pre><code class="language-cpp"> #include &lt;vector&gt;
+ #include &lt;unordered_map&gt;
+
+ #include "AnimationInfo.h"
+</code></pre>
+  </li>
+  <li>
+    <p>모든 헤더 파일 첫 번째 줄에 <code>#pragma once</code>를 기재한다.</p>
+  </li>
+  <li>
+    <p>지역 변수를 선언할 때는 그 지역 변수를 사용하는 코드와 동일한 줄에 선언하는 것을 원칙으로 한다.</p>
+  </li>
+  <li>
+    <p><code>double</code>이 반드시 필요한 경우가 아닌 이상 부동 소수점 값에 <code>f</code>를 붙여준다</p>
+
+    <pre><code class="language-cpp"> float f = 0.5f;
+</code></pre>
+  </li>
+  <li>switch case 문에는 항상 <code>default:</code>를 넣는다.
+    <pre><code class="language-cpp"> switch (number)
+ {
+ case 0:
+     ... 
+     break;
+ default:
+     break;
+ }
+</code></pre>
+  </li>
+  <li>switch case 문 끝에 <code>break;</code>를 넣지 않고 그 바로 아래 <code>case</code> 문의 코드를 실행하고 싶은 경우, 미리 정의해둔 FALLTHROUGH 매크로를 추가한다. 단, case 문 안에 코드가 없는 경우는 예외이다. 이는 C++17 사양에서 <code>[[fallthrough]]</code> 애트리뷰트로 대체될 것이다.
+    <pre><code class="language-cpp"> switch (number)
+ {
+ case 0:
+     DoSomething();
+     FALLTHROUGH
+ case 1:
+     DoFallthrough();
+     break;
+ case 2:
+ case 3:
+     DoNotFallthrough();
+     break;
+ default:
+     break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p><code>default</code> case가 절대 실행될 일이 없는 경우, <code>default</code> case 안에 <code>assert(false);</code> 란 코드를 추가한다. <del><code>Assert()</code>를 직접 구현하면 그 안에서 릴리즈 빌드 시 최적화 힌트를 추가할 수 있다.</del></p>
+
+    <pre><code class="language-cpp"> switch (type)
+ {
+ case 1:
+     ... 
+     break;
+ default:
+     assert(false); // unknown type"
+     break;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>원칙적으로 모든 곳에 <code>const</code>를 사용한다. 여기에는 지역 변수와 함수 매개 변수도 포함된다.</p>
+  </li>
+  <li>개체를 수정하지 않는 멤버 함수에는 모두 <code>const</code>를 붙인다.
+    <pre><code class="language-cpp"> int GetAge() const;
+</code></pre>
+  </li>
+  <li>
+    <p>값(value) 형식의 변수를 const로 반환하지 않는다. 포인터나 참조(reference)를 반환할 경우에만 <code>const</code> 반환을 한다.</p>
+  </li>
+  <li>
+    <p>재귀 함수는 이름 뒤에 <code>Recursive</code>를 붙인다.</p>
+
+    <pre><code class="language-cpp"> void FibonacciRecursive();
+</code></pre>
+  </li>
+  <li>
+    <p>클래스 안에서 멤버 변수와 메서드의 등장 순서는 다음을 따른다.
+ a. friend 클래스들
+ b. public 메서드들
+ c. protected 메서드들
+ d. private 메서드들
+ e. protected 변수들
+ f. private 변수들</p>
+  </li>
+  <li>
+    <p>대부분의 경우 함수 오버로딩을 피한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+    <pre><code class="language-cpp"> const Anim* GetAnim(const int index) const;
+ const Anim* GetAnim(const char* name) const;
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+    <pre><code class="language-cpp"> const Anim* GetAnimByIndex(const int index) const;
+ const Anim* GetAnimByName(const char* name) const;
+</code></pre>
+  </li>
+  <li>
+    <p><code>const</code> 반환을 위한 함수 오버로딩은 허용한다.</p>
+
+    <pre><code class="language-cpp"> Anim* GetAnimByIndex(const int index);
+ const Anim* GetAnimByIndex(const int index) const;
+</code></pre>
+  </li>
+  <li>
+    <p><code>const_cast</code>를 직접적으로 사용하지 않는다. 대신 <code>const</code>인 개체를 수정 가능한 형태로 변환해서 반환하는 함수를 만든다.</p>
+  </li>
+  <li>
+    <p>클래스는 각각 독립된 소스 파일에 있어야 한다. 단, 작은 클래스 몇 개를 한 파일 안에 같이 넣어두는 것이 상식적일 경우 예외를 허용한다.</p>
+  </li>
+  <li>파일 이름은 대소문자까지 포함해서 반드시 클래스 이름과 일치해야 한다.
+    <pre><code class="language-cpp"> class PlayerAnimation;
+
+ PlayerAnimation.cpp
+ PlayerAnimation.h
+</code></pre>
+  </li>
+  <li>
+    <p>여러 파일이 하나의 클래스를 이룰 때, 파일 이름은 클래스 이름으로 시작하고, 그 뒤에 밑줄과 세부 항목 이름을 붙인다.</p>
+
+    <pre><code class="language-cpp"> class RenderWorld;
+
+ RenderWorld_load.cpp
+ RenderWorld_demo.cpp
+ RenderWorld_portals.cpp
+</code></pre>
+  </li>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=GnWASmocihE">Reverse OOP 패턴</a>을 사용할 때, 플랫폼 전용 클래스는 위 항목과 비슷한 명명 규칙을 사용한다.</p>
+
+    <pre><code class="language-cpp"> class Renderer;
+
+ Renderer.h			// 게임에서 호출되는 모든 Renderer 인터페이스
+ Renderer.cpp		// 모든 플랫폼 용 Renderer 구현 소스
+ Renderer_gl.h		// Renderer가 호출하는 RendererGL 인터페이스
+ Renderer_gl.cpp		// RendererGL 구현 소스
+</code></pre>
+  </li>
+  <li>
+    <p><del>표준 C assert 대신에 자신만의 Assert 버전을 구현한다.</del></p>
+  </li>
+  <li>
+    <p>특정 조건이 반드시 충족되어야 한다고 가정(assertion)하고 짠 코드 모든 곳에 assert를 사용한다. assert는 복구 불가능한 조건이다. <del>Assert는 릴리즈 빌드에서 <a href="https://docs.microsoft.com/en-us/cpp/intrinsics/assume">__assume</a> 키워드로 대체하여 컴파일러에 최적화 힌트를 줄 수 있다.</del></p>
+  </li>
+  <li>
+    <p><del>모든 메모리 할당은 직접 구현한 New, Delete 키워드를 통해 호출한다.</del></p>
+  </li>
+  <li>
+    <p><del>memset, memcpy, memmove와 같은 메모리 연산 역시 우리 고유의 MemSet, MemCpy, MemMove 키워드를 통해 호출해야 한다.</del></p>
+  </li>
+  <li>
+    <p>어떤 이유로든 매개변수로 <code>nullptr</code>가 넘어올 수 있는 경우가 아니라면, 포인터 대신 참조자( <code>&amp;</code> )를 사용하는 것을 원칙으로 한다. (예외는 다음 항목을 참고)</p>
+  </li>
+  <li>
+    <p>함수에서 매개변수를 통해 값을 반환할 때(<code>out</code> 매개변수)는 포인터를 사용하며, 매개변수 이름 앞에 <code>out</code>을 붙인다.</p>
+
+    <p><strong>함수:</strong></p>
+    <pre><code class="language-cpp"> void GetScreenDimension(uint32_t* const outWidth, uint32_t* const  outHeight)
+ {
+ }
+</code></pre>
+
+    <p><strong>호출:</strong></p>
+    <pre><code class="language-cpp"> uint32_t width;
+ uint32_t height;
+ GetScreenDimension(&amp;width, &amp;height);
+</code></pre>
+  </li>
+  <li>위 항목의 <code>out</code> 매개 변수는 반드시 null이 아니어야 한다. (함수 내부에서 <code>if</code> 문 대신 <code>assert</code>를 사용할 것)
+    <pre><code class="language-cpp"> void GetScreenDimension(uint32_t* const outWidth, uint32_t* const  outHeight)
+ {
+     assert(outWidth);
+     assert(outHeight);
+ }
+</code></pre>
+  </li>
+  <li>매개 변수가 클래스 내부에서 저장될 때는 포인터를 사용한다.
+    <pre><code class="language-cpp"> void AddMesh(Mesh* const mesh)
+ {
+     mMeshCollection.push_back(mesh);
+ }
+</code></pre>
+  </li>
+  <li>매개 변수가 <code>void</code> 포인터여야 하는 경우는 포인터를 사용한다.
+    <pre><code class="language-cpp"> void Update(void* const something)
+ {
+ }
+</code></pre>
+  </li>
+  <li>비트 플래그 열거형은 이름 뒤에 <code>Flags</code>를 붙인다.
+    <pre><code class="language-cpp"> enum class eVisibilityFlags
+ {
+ }
+</code></pre>
+  </li>
+  <li>특정 크기(예를 들어, 데이터 멤버의 직렬화를 위한 크기)가 필요하지 않은 한 열거형에 크기 지정자를 추가하지 않는다.
+    <pre><code class="language-cpp"> enum class eDirection : uint8_t
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>디폴트 매개 변수 대신 함수 오버로딩을 선호한다.</p>
+  </li>
+  <li>
+    <p>디폴트 매개 변수를 사용하는 경우, null이나 <code>false</code>, <code>0</code> 같이 비트 패턴이 0인 값을 사용한다.</p>
+  </li>
+  <li>
+    <p>가능한 한 고정된 크기(size)의 컨테이너를 사용한다.</p>
+  </li>
+  <li>
+    <p>동적 컨테이너를 사용해야 한다면 가능한 한 미리 <code>reserve()</code>를 호출한다.</p>
+  </li>
+  <li><code>#define</code> 으로 정의된 상수는 항상 괄호로 감싸준다.
+    <pre><code class="language-cpp"> #define NUM_CLASSES (1)
+</code></pre>
+  </li>
+  <li>
+    <p>상수는 <code>#define</code> 보다 <code>const</code> 상수 변수로 선언한다.</p>
+  </li>
+  <li>
+    <p>클래스를 상호 참조할 때는 <code>#include</code> 보다 전방선언(forward declaration)을 최대한 이용한다.</p>
+  </li>
+  <li>
+    <p>모든 컴파일러 경고는 반드시 고친다.</p>
+  </li>
+  <li>
+    <p>변수 가리기(variable shadowing)는 허용되지 않는다. 외부 변수가 동일한 이름을 사용중이라면 내부 변수에는 다른 이름을 사용한다.</p>
+
+    <pre><code class="language-cpp"> class SomeClass
+ {
+ public:
+     int32_t Count;
+ public:
+     void Func(const int32_t Count)
+     {
+         for (int32_t count = 0; count != 10; ++count)
+         {
+             // Use Count
+         }
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>한 줄에 변수 하나만 선언한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+
+    <pre><code class="language-cpp"> int counter = 0, index = 0;
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+    <pre><code class="language-cpp"> int counter = 0;
+ int index = 0;
+</code></pre>
+  </li>
+  <li>
+    <p>지역 객체를 반환할 때 <a href="https://docs.microsoft.com/en-us/previous-versions/ms364057(v=vs.80)">NRVO</a>의 이점을 활용한다. 이는 함수 내에 하나의 return문 만 쓴다는 것을 의미하며, 이것은 값으로 객체를 반환할 때만 적용된다.</p>
+  </li>
+  <li>
+    <p><code>struct</code>나 <code>class</code>에서 초기화 후 값 변경을 막으려고 <code>const</code> 멤버 변수를 쓰지 않는다. 참조(<code>&amp;</code>) 멤버변수의 경우도 마찬가지</p>
+  </li>
+  <li>
+    <p>멤버 변수를 초기화할 때는 초기화 리스트를 사용하는 것을 기본으로 한다.</p>
+  </li>
+  <li>«&lt;미정: __restrict keyword</li>
+</ol>
+
+<h2 id="ii-소스-코드-포맷팅">II. 소스 코드 포맷팅</h2>
+
+<ol>
+  <li>
+    <p><code>include</code> 전처리문 블록과 코드 본문 사이에 반드시 빈 줄이 있어야 한다.</p>
+  </li>
+  <li>
+    <p><del>탭(tab)은 비주얼 스튜디오 기본값을 사용하며, 비주얼 스튜디오를 사용하지 않을 시 띄어쓰기 4칸을 탭으로 사용한다.</del> <br />
+탭(tab)은 비주얼 스튜디오 기본값인 실제 탭 문자를 사용하며 스페이스 문자로 바꾸지 않는다.</p>
+  </li>
+  <li>
+    <p>중괄호( { )를 열 때는 언제나 새로운 줄에 연다.</p>
+  </li>
+  <li>
+    <p>중괄호 안( { } )에 코드가 한 줄만 있더라도 반드시 중괄호를 사용한다.</p>
+
+    <pre><code class="language-cpp"> if (bSomething)
+ {
+     return;
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>포인터나 참조 기호는 자료형에 붙인다.</p>
+
+    <pre><code class="language-cpp"> int&amp; number;
+ int* number;
+</code></pre>
+  </li>
+  <li>
+    <p>초기화 리스트를 이용해 멤버 변수를 초기화할 때는 아래와 같은 포맷을 따라 한 줄에 변수 하나씩 초기화한다.</p>
+
+    <p><strong>틀린 방식:</strong></p>
+    <pre><code class="language-cpp"> MyClass::MyClass(const int var1, const int var2)
+   :mVar1(var1), mVar2(var2), mVar3(0)
+ {
+</code></pre>
+
+    <p><strong>올바른 방식:</strong></p>
+    <pre><code class="language-cpp"> MyClass::MyClass(const int var1, const int var2)
+   : mVar1(var1)
+   , mVar2(var2)
+   , mVar3(0)
+ {
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="iii-최신-c-기능-관련">III. 최신 C++ 기능 관련</h2>
+
+<ol>
+  <li>
+    <p><code>override</code> 와 <code>final</code> 키워드를 반드시 사용한다.</p>
+  </li>
+  <li>항상 <code>enum class</code> 를 사용한다.
+    <pre><code class="language-cpp"> enum class eDirection
+ {
+     North,
+     South
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>가능한 <code>assert</code> 대신 <code>static_assert</code> 를 사용한다.</p>
+  </li>
+  <li>
+    <p>포인터에 <code>NULL</code> 대신 <code>nullptr</code> 를 사용합니다.</p>
+  </li>
+  <li>
+    <p>개체의 수명이 클래스 내에서만 처리되는 경우 <code>unique_ptr</code> 를 사용한다. (즉, 개체 생성은 생성자에서, 개체 파괴는 소멸자에서)</p>
+  </li>
+  <li>
+    <p>적용 가능한 곳이라면 범위기반 <code>for</code> 문을 사용한다.</p>
+  </li>
+  <li>
+    <p><code>반복자</code>나 <code>new</code> 키워드가 같은 줄에 있어서, 어떤 개체가 만들어지는 지 명확하게 드러나는 경우가 아니라면 <code>auto</code> 키워드를 사용하지 않는다.</p>
+  </li>
+  <li>
+    <p><code>std::move</code>를 사용하여 수동으로 반환 값을 최적화하지 않는다. 이럴 경우, <a href="https://msdn.microsoft.com/en-us/library/ms364057(v=vs.80).aspx">자동 NRVO 최적화</a>가 적용되지 않는다.</p>
+  </li>
+  <li>
+    <p>이동 생성자(move constructor)와 이동 대입 연산자(move assignment operator)를 사용해도 된다.</p>
+  </li>
+  <li>
+    <p>단순 상수 변수에는 <code>const</code> 대신 <code>constexpr</code> 을 사용한다.</p>
+
+    <p><strong>적용 전:</strong></p>
+    <pre><code class="language-cpp"> const int DEFAULT_BUFFER_SIZE = 65536;
+</code></pre>
+
+    <p><strong>적용 후:</strong></p>
+    <pre><code class="language-cpp"> constexpr int DEFAULT_BUFFER_SIZE = 65536;
+</code></pre>
+  </li>
+  <li>
+    <p>«&lt;미정: Lambda</p>
+  </li>
+  <li>«&lt;미정: do not use shared_ptr</li>
+</ol>
+
+<h2 id="iv-프로젝트-설정-및-프로젝트-구조"><del>IV. 프로젝트 설정 및 프로젝트 구조</del></h2>
+
+<ol>
+  <li>
+    <p><del>Visual C++: 프로젝트 설정을 변경하려면 항상 속성 시트(property sheets)에서 변경 한다.</del></p>
+  </li>
+  <li>
+    <p><del>프로젝트 설정에서 컴파일 경고를 비활성화 하지 않는다. 그 대신, 코드에서 <code>#pragma</code> 를 사용한다.</del></p>
+  </li>
+</ol>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a004">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        제대로 대우받는 개발자 | 부족한 컴공지식 배우기 | MIT급 컴공인강
+                                    </h2>
+                                    <p class="description m-0">최저임금으로 고통받는 일회성 프로그래머는 그만! POCU 아카데미가 올해 연봉협상을 책임지겠습니다!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

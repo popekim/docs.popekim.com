@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>2. UP & DOWN 게임 만들기 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1762032823369147567" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/galexandria/denoil-intro-to-game-programming/2-up-and-down" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">2. UP & DOWN 게임 만들기</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2022-06-06
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/galexandria/denoil-intro-to-game-programming/2-up-and-down.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <h2 id="들어가며">들어가며</h2>
+<p>안녕하세요. Denoil입니다. 죄송합니다. 조금 오래되었네요. 양해 부탁드립니다. ^^ 제가 집에 잠시 올라온 바람에 놀다가보니 쿨럭;; 그래도 귀차니즘을 이겨내고자 이렇게 쓰게 됬습니다. 이번 2편은 전번 가위바위보 게임보다는 난이고다 낮은 게임이지요. 일명 UP &amp; DOWN 게임~! 술자리에 가면 병뚜껑의 꼬다리 부분 꼬아가지고 돌아가면서 치는 게임 하지 않습니까 ^^ 고거 떼어내면 그사람이 술래가 되어 그 병뚜껑안에 있는 번호를 맞추게 하지요 ^^ 그런 게임입니다. 대신 여기선 10번의 기회밖엔 주어지지 않습니다.</p>
+
+<h2 id="전체소스코드">전체소스코드</h2>
+<p>자 풀소스를 볼까요?</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt; 
+#include &lt;conio.h&gt; 
+#include &lt;stdlib.h&gt; 
+#include &lt;time.h&gt; 
+
+void main() 
+{ 
+   int Random = 0 ; 
+   int User = 0 ; 
+   int Select = 0 ; 
+   int PlayingCount = 0 ; 
+
+   srand( time( NULL ) ) ; 
+
+   printf("이게임은 10번의 기회를 주어 랜덤하게 나온 숫자를 맞추는 게임입니다.\n" ); 
+   printf("술 먹을때 소주뚜껑 쳐가지고 끝나면 Up &amp; Down 게임하지 않습니까? ^^\n" ); 
+   printf("그 게임이라고 생각하시면 됩니다. ^^\n" ) ; 
+   printf("자 준비가 되셨으면 아무키나 눌러주세요 ^^\n" ) ; 
+   getch() ; 
+   system( "cls" ) ; 
+
+   do 
+   { 
+   printf("[ Start : 1 ] [ End : 0 ] : " ) ; 
+   scanf("%d", &amp;Select ) ; 
+   } while( Select &lt; 0 || Select &gt; 1 ) ; 
+
+
+   Random = rand() % 100 ; 
+   PlayingCount = 10 ; 
+
+   while( PlayingCount != 0 ) 
+   { 
+       printf("0~99까지 숫자를 입력하세요: " ) ; 
+       scanf("%d", &amp;User ) ; 
+
+       if( User == Random ) 
+       { 
+           printf( "딩동댕~\n" ) ; 
+           break ; 
+       } 
+       else if( User &gt; Random ) printf("DOWN\n" ) ; 
+       else if( User &lt; Random ) printf("UP\n" ) ; 
+   } 
+}
+</code></pre>
+
+<p>자~여기 까지입니다. 너무나 쉽게 짜여졌죠. C처음 하시는 분도 금방 따라할수 있는 코드입니다. 별로 중요하지 않는 부분은 그냥 넘어가도록 하겠습니다.</p>
+
+<p>자 그럼 코드 설명에 빠져 봅시다~</p>
+
+<h3 id="소스-분석">소스 분석</h3>
+
+<pre><code class="language-c">int Random = 0 ; 
+int User = 0 ; 
+int Select = 0 ; 
+int PlayingCount = 0 ; 
+</code></pre>
+
+<ul>
+  <li>Random -&gt; 우리가 맞출 숫자를 저장할 변수</li>
+  <li>User -&gt; 사용자가 입력할 숫자 입니다. 이숫자와 Random숫자와 같다면 Clear</li>
+  <li>Select -&gt; 메뉴에서 Select를 관리하는 변수입니다. 1은 Start, 2는 Exit</li>
+  <li>PlayingCount -&gt; 입력을 제한하는 변수입니다. 여기서는 10번의 기회를 주었죠.</li>
+</ul>
+
+<pre><code class="language-c">srand( time( NULL ) ) ;
+</code></pre>
+
+<h4 id="srand함수의-설명">srand함수의 설명</h4>
+
+<pre><code class="language-c">void srand( usigned seed ) ;
+</code></pre>
+
+<p>난수 발생기는 예측할 수 없는 수를 발생시키기는 하나 발생되는 수가 일정하다. 그래서 srand로 난수 발생기를 초기화 시킨다. seed가 난수 발생의 초기점이 된다.</p>
+
+<h5 id="httpwwwwinapicokr-발췌">http://www.winapi.co.kr 발췌</h5>
+<pre><code>seed 값을 넣어주어 난수 발생기를 초기화해주어 항상 틀린 난수를 발생하게 합니다.
+time 을 넣어주는 이유는 시간은 계속 변하지요? 그럼 난수의 초기값도 항상 바뀌게 되죠.  
+그럼 난수도 바뀌게 되는것입니다.  
+</code></pre>
+
+<pre><code class="language-c">do 
+{ 
+   printf("[ Start : 1 ] [ End : 0 ] : " ) ; 
+   scanf("%d", &amp;Select ) ; 
+}while( Select &lt; 0 || Select &gt; 1 ) ; 
+</code></pre>
+
+<p>시작할 것인지 게임을 종료할것인지 메뉴를 선택하게 되지요. do..while문은 일단 첫문장은 실행되고 while의 비교문에서 참이라면 다시 도는것. 아시죠?^^</p>
+
+<pre><code class="language-c">Random = rand() % 100 ; 
+PlayingCount = 10 ; 
+</code></pre>
+
+<p>자.. 이제 우리가 맞출 숫자를 뽑아 와야하죠?</p>
+
+<p>Random = rand() % 100 ; 이것을 보면 0~99까지 구합니다. 어째서냐! 라고 물으시면 1편에서 확인하세요-_-/ PlayingCount 에 10을 넣어준이유는 10번의 기회를 주겠다는 소립니다.</p>
+
+<pre><code class="language-c">while( PlayingCount != 0 ) 
+{ 
+   . 
+   . 
+   . 
+   PlayingCount-- ; 
+} ;
+</code></pre>
+
+<p>여기의 코드를 보면 PlayingCount 변수가 0 이 아니라면 계속 루프를 돕니다. 그래서 한번 루프를 돌때마다 PlayingCount 를 – 시켜주었죠? 10번 실행되면 PlayingCount는 0이 되니 while문을 빠져나오게 됩니다. 간단하죠?</p>
+
+<pre><code class="language-c">printf("0~99까지 숫자를 입력하세요: " ) ; 
+scanf("%d", &amp;User ) ; 
+</code></pre>
+
+<p>0~99까지의 숫자를 입력합니다.</p>
+
+<pre><code class="language-c">if( User == Random ) 
+{ 
+   printf( "딩동댕~\n" ) ; 
+   break ; 
+} 
+else if( User &gt; Random ) printf("DOWN\n" ) ; 
+else if( User &lt; Random ) printf("UP\n" ) ; 
+</code></pre>
+
+<p>User 변수와 Random 이 같다면 맞췄다는 말이 되므로 딩동댕이라는 글씨를 찍어준 후 while문을 빠져나오기 위해 break;를 해주는것입니다.</p>
+
+<p>그리고 만약 User &gt; Random 이라면 랜덤숫자보다 더 크게 입력한 것이므로 Down이라고 힌트를 주어 다음 입력할때는 현재 입력한 숫자보다 적은 숫자를 입력하도록 하는것입니다.</p>
+
+<p>User &lt; Random 도 위와 마찬가지로 위의 숫자를 입력하도록 힌트를 주는것입니다.</p>
+
+<p>자~코드 설명은 여기까지 입니다. 그다지 어렵지 않죠? ^^ 저번편보다 난이도가 내려간것에 대해 양해를 구합니다. (-<em>-)(</em> <em>)(-</em>-) 꾸벅~</p>
+
+<h2 id="숙제">숙제</h2>
+<p>자 숙제를 내드리도록 하겠습니다.</p>
+
+<p>유저가 숫자를 입력할때 0~99까지 입력해야 하는데 예외처리를 해두지 않았습니다. 만약 0~99의 범위를 벗어나지 못하게 하는 예외처리를 추가해 보십시오. 
+숫자를 맞추게 되면 프로그램은 자동으로 종료되게 되어있습니다. 지속적으로 플레이 되게 해보십시오.</p>
+
+<p>두가지 숙제 한번 해보시고 다르게 개조도 해보십시오. ^^ 그럼 Denoil 이만 물러가겠습니다.</p>
+
+<h2 id="저술정보">저술정보</h2>
+<ul>
+  <li>저자: Denoil</li>
+  <li>저술일: 2005년 7월 17일</li>
+</ul>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses/COMP3500" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a011">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/COMP3500.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        코테만 파면 제자리 | 시간 낭비 그만 | 실무 알고리즘
+                                    </h2>
+                                    <p class="description m-0">코테만 풀면 실력이 안 느는 이유? 원리를 제대로 이해하지 못하기 때문이죠. 알고리즘, POCU 아카데미에서 제대로 배우고 푸세요.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2025. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>
