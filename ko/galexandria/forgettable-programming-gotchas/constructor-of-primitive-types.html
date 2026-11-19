@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>4. 기본형의 생성자 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1795114677419952306" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/galexandria/forgettable-programming-gotchas/constructor-of-primitive-types" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">4. 기본형의 생성자</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2026-11-19
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/galexandria/forgettable-programming-gotchas/constructor-of-primitive-types.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>일반적으로 변수를 초기화하는 경우는 아래의 세 가지 방법 중 하나를 사용합니다.</p>
+
+<pre><code class="language-cpp">int i;
+...
+i = 10;
+
+int i = 10;
+
+int i = some_value; // some_value는 다른 변수 혹은 상수
+</code></pre>
+
+<p>위 세 가지 형태의 초기화 방법을 제외하고 표준에서 새롭게 보여주는 초기화 방법이 하나 더 있습니다.</p>
+
+<pre><code class="language-cpp">int i(10);
+
+int i(some_value); // some_value는 다른 변수 혹은 상수
+</code></pre>
+
+<p>위의 두 가지 구문입니다. int는 standard에서 제공하는 기본 변수형 중 하나입니다. 그런데 위에서는 int를 마치 클래스의 생성자를 초기화하듯이 사용하고 있습니다. 물론 클래스의 생성자 중에서 복사 생성자를 사용하는 것이겠지요.</p>
+
+<p>위의 다섯 가지 변수 초기화 방법 중에서 가장 많이 사용되는 것은 아무래도 가장 처음 넣은 세 가지 방법이겠지요. 하지만 위에 나열한 다섯 가지 초기화 방법 외에도 하나 더 초기화하는 방법이 있습니다.</p>
+
+<pre><code class="language-cpp">int i();
+</code></pre>
+
+<p>위 구문이 이상해 보이는 분도 계실 것입니다. 확실히 저도 이상하다고 보이니까요. 어쨋든 위의 방법도 초기화의 방법 중 하나입니다.</p>
+
+<p>위 방법을 이용했을 경우 class의 변수였을 경우 기본 생성자가 호출되며, C++에서 제공하는 기본 타입의 변수의 경우 보통 0으로 초기화됩니다.</p>
+
+<p>전혀 쓸모가 없다고 보실 분도 계시겠지만, C++ 표준 위원회는 쓸모없는 것은 남겨 두지 않습니다. 저것이 쓰이는 분야는 보통의 경우는 template을 사용하는 경우겠지요.</p>
+
+<p>class 타입이 템플릿 타입 인자로 들어올지 아니면 기본형의 템플릿 타입 인자로 넘어 올런지는 아무도 모릅니다. 따라서 만약 기본형에 대하여 위의 구문이 불가능하다면 커다란 문제가 발생합니다. 예를 들면 어떤 템플릿 함수가 있습니다. 이 함수는 성공했을 경우는 성공한 값을 리턴하면 되지만 실패했을 경우 기본적인 값을 리턴해야 합니다. 그래서 함수가 실패를 해도 프로그램의 동작에는 영향을 미치지 않아야 합니다. 그래서 아래와 같은 함수를 만들었습니다.</p>
+
+<pre><code class="language-cpp">template &lt;typename T&gt; T func(void)
+{
+ T value;
+ ...
+ if ( failed )
+   return T(); // 기본적인 값 == 클래스 생성 후 기본 생성자만 호출된 상태
+ else
+   return value;
+}
+</code></pre>
+
+<p>자 위와 같은 함수를 만들었는데 템플릿 타입 인자로 int형이 들어갔다고 쳐보죠.<br />
+그러면 위 함수는 아래와 같이 변합니다.</p>
+
+<pre><code class="language-cpp">int func(void)
+{
+ int value;
+ ...
+ if ( failed )
+   return int();
+ else
+   return value;
+}
+</code></pre>
+
+<p>따라서 기본형에 대하여도 int i();와 같은 형태의 초기화 구문은 반드시 필요합니다. 기본형에는 사실상 생성자가 없습니다. 하지만 컴파일러가 생성자가 있는 것처럼 동작을 하게끔 만들어주는 방법은 필요합니다. template을 사용하지 않는다면 굳이 저런식으로 만들 필요는 없겠지만요. 이 사실을 알고 있기만 해도 나중에 template을 이용하여 어떤 클래스나 함수를 만들 때 많은 도움을 받을 수 있습니다.</p>
+
+<p>'기본형에도 기본 생성자와 복사 생성자가 존재한다'</p>
+
+<h2 id="TOC--">저술정보</h2>
+
+<ul>
+  <li>자꾸 잊는 프로그래밍 이야기 4편</li>
+  <li>저자: 류인환(rihwan)</li>
+  <li>저술일: 2005년 9월 27일</li>
+</ul>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a009">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        TOP 개발자에게 배우는 컴공수업 | 수업료는 최저시급, 난 최고연봉 | 프로그래밍 공부순서
+                                    </h2>
+                                    <p class="description m-0">야근 없이 오직 실력으로 대우받는 프로그래머가 되고 싶다고요? POCU 아카데미에서 시작하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2026. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

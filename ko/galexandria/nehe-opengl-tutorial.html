@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>NeHe OpenGL 강좌 | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1795114677419952306" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/galexandria/nehe-opengl-tutorial" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">NeHe OpenGL 강좌</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2026-11-19
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/galexandria/nehe-opengl-tutorial.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>이 페이지에 실린 강좌들은 실수나 적절치 못한 주석들을 가지고 있을 수 있으며, OpenGL을 배울 수 있는 최고의 자료는 아닐 것입니다. 이 코드를 어떻게 사용하던 간에 그것은 여러분의 자유입니다. 저는 그저 OpenGL을 처음 접하시는 분들의 학습과정을 조금이나마 쉽게 해주려고 노력할 뿐입니다. OpenGL을 정말 진지하게 배우고 싶으시다면 다음 책들에 자금을 좀 투자하실 것을 추천합니다: 빨간책 1.4버전(제4판, <a href="http://www.amazon.com/gp/product/0321173481?ie=UTF8&amp;tag=galexandria-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321173481">원서 - ISBN 032117348</a>1, 번역서 - ISBN 8956742243), <a href="http://www.amazon.com/gp/product/032117383X?ie=UTF8&amp;tag=galexandria-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=032117383X">파란책 1.4버전(제4판): ISBN 032117383X</a>, <a href="http://www.amazon.com/gp/product/0321197895?ie=UTF8&amp;tag=galexandria-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321197895">오렌지책 1.4버전(쉐이더 언어): ISBN 0321197895</a>. 신규 OpenGL 프로그래머들에게는 이 책을 이해하는 것이 다소 어려울 수도 있으나 이 책들은 OpenGL을 다루는 현존하는 책 중에 최고입니다. 또 다른 추천할만한 책은 OpenGL 슈퍼바이블(<a href="http://www.amazon.com/gp/product/0672326019?ie=UTF8&amp;tag=galexandria-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0672326019">원서 - ISBN 0672326019</a> , 번역서 - ISBN 8956742529)입니다. 하지만 이 책에 대한 의견은 매우 다양합니다. 또한 사용하시려고 하는 프로그래밍 언어에 대한 완전한 이해도 매우 중요합니다. 저는 GL 코드가 아닌 부분들에 대해서도 주석을 달아서 설명했습니다만 저는 독학으로 공부했습니다. 따라서 제가 쓴글이 항상 맞거나 좋은 코드라고 할수는 없습니다. 이 사이트에서 배우는 것 중에 어떤 것을 취하여 여러분의 프로젝트에 적용할 것인지는 전적으로 여러분에게 달려있습니다. 코드들을 둘러 보시고, 책을 읽어보시고, 필요한 경우 저에게 질문도 해주십시요. 이 사이트의 코드 정도를 이미 정복하신 분들은 OpenGL.org처럼 보다 전문적인 사이트를 확인해보시기 바랍니다. 또한 제 페이지에 있는 여러 OpenGL 링크들도 방문하십시요. 제가 링크해놓은 각 사이트들은 OpenGL 커뮤니티에 있어 믿을수 없을만큼 훌륭한 자산입니다. 이 사이트들 중 대부분이 GL을 잘 알 뿐만 아니라 저보다 훨씬 프로그래밍도 잘하시는 탁월한 개개인들에 의해 운영됩니다. 제 사이트를 살펴보시는 동안 이 모든것들에 대해서 명심해주셨으면 좋겠습니다. 제가 드릴 수 있는 것들을 잘 즐기셨으면 좋겠습니다.</p>
+
+<p>마지막으로 한마디 하겠습니다. 만약 제 코드가 다른 사람의 코드와 비슷하다고 생각하시는 분들은 저에게 연락을 주십시요. 분명히 밝혀두건데 제가 코드를 빌려온 곳은 MSDN과 저와 마찬가지 방법으로 다른 사람들에게 GL을 가르쳐주기 위해 존재하는 웹사이트들 뿐입니다. 저는 결코 의도적으로 코드를 훔쳐오지 않으며, 저작자를 밝히지 않은채 그러는 일도 결코 없을 것입니다. 하지만 제가 코드를 빌려온 사이트가 다른 사람의 코드를 베껴왔을 가능성도 있습니다. 만약 그런 일이 있다면 저에게 연락을 주십시요. 제 코드를 다시 작성하거나 문제되는 코드를 제 프로그램에서 제거하겠습니다. 그러나 대부분의 코드는 저의 독창물일 것입니다. 무언가를 만들려고 할 때 전혀 어떤 아이디어도 없는 경우에만 코드를 빌려왔고, 그러는 경우에도 그 코드를 이해한 뒤에야만 제 프로그램에 포함시켰기 때문입니다. 저의 강좌중에 실수를 발견하신 경우 아무리 조그만 실수라도 저에게 알려주시면 고맙겠습니다.</p>
+
+<p>저의 기반코드에 대해 한가지 말씀드려야 할 중요한 것은 작성년도가 1997년이라는 것입니다. 그 뒤 많은 변경사항들이 있었고, 이것은 절대 다른 사이트로부터 빌려온 것이 아닙니다. 또한 이 코드가 앞으로도 계속 변경되어 나갈 것입니다. 제가 수정을 가하지 않는 경우는 그 변경을 책임진 사람의 이름을 밝혀둘 것입니다.</p>
+
+<ol>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/1-settingup-opengl-window">OpenGL 윈도우 설정하기</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/2-your-first-polygon">첫 폴리곤 만들기</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/3-adding-color">색상 추가하기</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/4-rotation">회전</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/5-3d-shapes">3D 도형</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/6-texture-mapping">텍스처 매핑</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/7-texture-filter-lighting-keyboard-controls">텍스처 필터, 조명, 키보드 컨트롤</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/8-blending">블렌딩</a></li>
+  <li>3D 공간에서 비트맵을 움직여 보자</li>
+  <li>3D 세계에서의 로딩 및 이동</li>
+  <li>깃발효과(파도치는 텍스처)</li>
+  <li>디스플레이 리스트</li>
+  <li>비트맵 폰트</li>
+  <li>외곽선 폰트</li>
+  <li>텍스처매핑 외곽선 폰트</li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/16-cool-looking-fog">그럴듯한 안개효과</a></li>
+  <li>2D 텍스처 폰트</li>
+  <li>쿼드릭</li>
+  <li>삼각형스트립을 이용한 파티클엔진</li>
+  <li>마스킹</li>
+  <li>선, 안티알리어싱, 타이밍, 직각 뷰, 간단한 사운드</li>
+  <li>범프매핑,멀티 텍스처링,익스텐션</li>
+  <li>구체 매핑 쿼드릭</li>
+  <li>토큰, 익스텐션, 가위 테스트, TGA 로딩</li>
+  <li>모핑, 파일로부터 물체 읽어오기</li>
+  <li>클리핑,스텐실버퍼를 이용한 반사</li>
+  <li>그림자</li>
+  <li>베지어 패치/전체화면 수정</li>
+  <li>블리터 함수, RAW 텍스처 로딩</li>
+  <li>충돌검사</li>
+  <li>모델로딩</li>
+  <li>피킹, 알파 블렌딩, 알파 테스트, 정렬</li>
+  <li>압축/비압축 TGA로딩</li>
+  <li>높이맵을 이용한 지형</li>
+  <li>AVI파일 재생</li>
+  <li>방사 블러 &amp; 텍스처로 렌더링하기</li>
+  <li>셀 쉐이딩</li>
+  <li>리소스파일로부터 텍스처 읽어오기 &amp; 삼각형 텍스처매핑</li>
+  <li>물리효과 시뮬레이션 입문</li>
+  <li>밧줄 물리효과</li>
+  <li>불륨감 있는 안개 &amp; IPicture 이미지 로딩</li>
+  <li>다중 뷰포트</li>
+  <li>FreeType 폰트</li>
+  <li>3D 렌즈 플레어와 Occlusion 테스트</li>
+  <li>정점 버퍼 개체</li>
+  <li>전체화면 안티알리어싱</li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/47-cg-vertex-shader">CG 정점 쉐이더</a></li>
+  <li><a href="/ko/galexandria/nehe-opengl-tutorial/48-arcball-rotation">아크볼 회전</a></li>
+</ol>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a009">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        TOP 개발자에게 배우는 컴공수업 | 수업료는 최저시급, 난 최고연봉 | 프로그래밍 공부순서
+                                    </h2>
+                                    <p class="description m-0">야근 없이 오직 실력으로 대우받는 프로그래머가 되고 싶다고요? POCU 아카데미에서 시작하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2026. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>

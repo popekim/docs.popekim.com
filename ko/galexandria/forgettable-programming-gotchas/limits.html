@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJ2MD4Q8');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+    <title>2. Limits | 포프의 문서창고</title>
+    
+    
+    
+    <link rel="stylesheet" href="/ko/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ko/assets/css/site.css?1795114677419952306" />
+    <link rel="stylesheet" href="/ko/assets/css/prism-pocu.min.css" />
+
+    <link rel="shortcut icon" href="/ko/assets/favicon.ico" />
+
+    <link rel="canonical" href="https://docs.popekim.com/ko/galexandria/forgettable-programming-gotchas/limits" />
+
+
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&subset=korean&display=block" rel="stylesheet">
+    
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575918182992085" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ2MD4Q8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+<nav class="navbar navbar-expand-lg fixed-top navbar-light shadow-sm px-3 px-sm-0 py-lg-3 bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="/ko/">
+            <img class="mt-2 mb-2" src="/ko/assets/img/navbar_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav ml-auto mr-lg-3">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/archives/">모든글</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" href="/ko/about">소개</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link font-weight-bold" target="_blank" href="https://blog.popekim.com/ko">블로그</a>
+    </li>
+    
+    
+</ul>
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container doc">
+        <div class="post pt-4 pb-4">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <article class="shadow--md px-md-5 py-md-5 border--md rounded">
+                <header>
+                    <h1 class="card-title text-center mb-4 font-weight-bold">2. Limits</h1>
+                    <div class="h6 text-muted text-center mb-4 mb-md-5">
+                        <div class="h6 text-muted align-middle">
+                            마지막 수정일: 2026-11-19
+                        </div>
+                        <div class="h6 text-muted align-middle">
+                            
+                            <a class="text-muted" href="https://github.com/popekim/dev-docs-ko/edit/main/galexandria/forgettable-programming-gotchas/limits.md"><i class="fas fa-edit"></i> 수정 제안하기</a>
+                        </div></div>
+                </header>
+                <section class="pt-4 pb-4 pb-md-5 border border-top-0 border-right-0 border-left-0">
+                    <p>일반적으로 int는 4 byte(2005년 현재), char는 1 byte등 프로그래머는 이러한 가정하에 프로그램을 짜는 경우가 많습니다. 특히 게임 프로그래밍에서는요. 하지만 실질적으로 int가 4 byte라고 가정하는 것은 무척 위험한 가정입니다. 예전에 퀘이크였나요? 윈도우용 게임을 리눅스로 포팅을 하게 되었었죠? 그때 만약 윈도우용 게임에서 저러한 가정을 하고 프로그래밍이 되어 있었다면 아마도 리눅스로 포팅하는데 엄청난 고통을 겪게 되었을 것입니다. 어디서 버그가 나는지도 모르게 버그가 끈임없이 발생할테니까요. 그리고 저러한 가정은 코드의 곳곳에 숨어서 넓게 퍼져 있을 가능성이 무척 큽니다. 따라서 하나하나 일일히 수정하는 일도 힘들어 지겠죠? 또 자신의 코드가 다른 시스템으로 포팅될 가능성이 없다고 생각하는 것은 실무 프로그래머로서는 무척 안좋은 생각입니다. 왜냐하면 어떤 시스템으로 포팅이 되고 안되고는 프로그래머가 판단할 문제가 아니기 때문입니다. 회사에서 경영진이 결정할 문제겠지요.</p>
+
+<p>과거 C/C++에서는 한계값이 정의된 limits.h 파일이 존재하여 그곳에 #define으로 각 한계값들이 정의되어 있었습니다.</p>
+
+<p>limits.h 파일의 내용 중 일부를 뽑아 보았습니다.</p>
+
+<pre><code class="language-cpp">#define SHRT_MIN    (-32768)        /* minimum (signed) short value */
+#define SHRT_MAX      32767         /* maximum (signed) short value */
+#define USHRT_MAX     0xffff        /* maximum unsigned short value */
+#define INT_MIN     (-2147483647 - 1) /* minimum (signed) int value */
+#define INT_MAX       2147483647    /* maximum (signed) int value */
+#define UINT_MAX      0xffffffff    /* maximum unsigned int value */
+#define LONG_MIN    (-2147483647L - 1) /* minimum (signed) long value */
+#define LONG_MAX      2147483647L   /* maximum (signed) long value */
+#define ULONG_MAX     0xffffffffUL  /* maximum unsigned long value */
+</code></pre>
+
+<p>보시면 각각의 값들의 한계값이 정의되어 있는 것을 볼 수 있습니다. 과거에는 저 한계값 define을 이용해서 프로그래밍을 했었습니다. 하지만 Standard C++에서는 조금 더 유연하면서 안정적인 방법이 등장하였습니다(안정적이라고 말한 이유는 define된 것이 아니기 때문입니다.).</p>
+
+<p>아래는 그것의 내용입니다.</p>
+
+<pre><code class="language-cpp">#include &lt;limits&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+       std::cout &lt;&lt; "largest_float == " &lt;&lt; std::numeric_limits&lt;float&gt;::max()
+               &lt;&lt; ", char is singed == " &lt;&lt; std::numeric_limits&lt;char&gt;::is_signed &lt;&lt; '\n';
+       return 0;
+}
+</code></pre>
+
+<p>numeric_limits<float>과 같은 경우는 이미 컴파일러 또는 코드에서 보통은 특수화한 template입니다. 실제로 numeric\_limits의 정의를 쫒아가 보면</float></p>
+
+<pre><code class="language-cpp">template&lt;&gt; class _CRTIMP2 numeric_limits&lt;float&gt;
+</code></pre>
+
+<p>와 같이 되어 있습니다. 위에서 _CRTIMP2 같은 문장은 굳이 생각하지 않아도 되겠죠? 왜냐하면 define일 것이고 아마도 빈 define일 것이기 때문입니다.</p>
+
+<p>ps. 실제로 위의 내용을 프로젝트에 적용하려고 하다보면 컴파일 에러가 뜨는 경우가 많을 것입니다. 제가 Visual Studio .Net 2003에서 테스트한 결과는 에러가 떳었습니다. 그 이유를 찾아본 결과 일반적인 windows.h 파일에는</p>
+
+<pre><code class="language-cpp">#define max(a, b) ...
+#define min(a, b) ...
+</code></pre>
+
+<p>와 같은 정의문이 포함되어 있기 때문입니다. 저러한 define은 컴파일러가 컴파일 하기 전에 전처리 과정으로 변해 버릴 것이며, 그로 인해 컴파일 에러가 발생합니다. 그래서 저 같은 경우는 위의 내용을 사용하기 위하여 windows.h를 포함한 후</p>
+
+<pre><code class="language-cpp">#ifdef max
+#undef max
+#endif
+</code></pre>
+
+<p>와 같이 하여 max 매크로를 제거한 후 사용합니다. 아직까지 Visual Studio도 표준에 다 따라가지 못한 것 같습니다.</p>
+
+<h2 id="TOC--">저술정보</h2>
+
+<ul>
+  <li>자꾸 잊는 프로그래밍 이야기 2편</li>
+  <li>저자: 류인환(rihwan)</li>
+  <li>저술일: 2005년 9월 14일</li>
+</ul>
+
+                    
+                    
+                    
+                    <section class="pt-5 pb-3 text-center welcome-to-pocu">
+                        <a href="https://pocu.academy/ko/Courses" class="d-inline-block border text-decoration-none text-left rounded to-pocu" id="a009">
+                            <div class="d-flex flex-row align-content-center">
+                                <div class="d-none d-md-block border border-top-0 border-bottom-0 border-left-0">
+                                    <img src="https://blog.pocu.academy/ko/assets/img/logos/PocuLogoShield_400.png" alt="img" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center px-4 py-3">
+                                    <h2 class="headlines font-weight-bold">
+                                        TOP 개발자에게 배우는 컴공수업 | 수업료는 최저시급, 난 최고연봉 | 프로그래밍 공부순서
+                                    </h2>
+                                    <p class="description m-0">야근 없이 오직 실력으로 대우받는 프로그래머가 되고 싶다고요? POCU 아카데미에서 시작하세요!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </section></section>
+                <footer>
+
+<script src="https://giscus.app/client.js"
+    data-repo="popekim/docs.popekim.com-comments-ko"
+    data-repo-id="R_kgDOONEsmQ"
+    data-category="Comments"
+    data-category-id="DIC_kwDOONEsmc4CoXJp"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="ko"
+    crossorigin="anonymous"
+    async>
+</script>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <footer class="site-footer position-absolute border-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 pl-sm-0 pl-lg-6">
+                <div>
+                    <span class="ml-1">Copyright © 2019 - 2026. Pope Kim</span>
+                </div>
+            </div>
+            <div class="col col-md-5 m-0 p-sm-0 text-md-right">
+                <a class="mr-sm-3 mr-0 text-secondary text-nowrap font-weight-bold" href="/en">English</a>
+                <span class="h5 opacity-75"><a href="https://www.github.com/popekim/dev-docs-ko" class="badge badge-dark" target="_blank"><i class="fab fa-github"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.youtube.com/c/popetv" class="badge badge-dark" target="_blank"><i class="fab fa-youtube"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://www.linkedin.com/in/popekim/ko" class="badge badge-dark" target="_blank"><i class="fab fa-linkedin-in"></i></a></span>
+                <span class="h5 opacity-75"><a href="https://x.com/blindrendererkr" class="badge badge-dark" target="_blank"><i class="fab fa-twitter"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="/ko/assets/lib/jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="/ko/assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/ko/assets/lib/prism/js/prism.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-asm6502.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-c.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-cpp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-csharp.min.js"></script>
+<script src="/ko/assets/lib/prism/js/prism-java.min.js"></script>
+<script src="/ko/assets/js/prism/prism-masm.min.js"></script>
+<script src="/ko/assets/js/saveLangToCookie.js" type="text/javascript"></script>
+
+</body>
+
+</html>
